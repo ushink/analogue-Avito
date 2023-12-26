@@ -1,17 +1,19 @@
 @font-face {
-  font-family: "Roboto";
-  src: local("Roboto"), url("/public/fonts/Roboto-Black.ttf") format("ttf"),
-    url("/public/fonts/Roboto-BlackItalic.ttf") format("ttf"),
-    url("/public/fonts/Roboto-Bold.ttf") format("ttf"),
-    url("/public/fonts/Roboto-BoldItalic.ttf") format("ttf"),
-    url("/public/fonts/Roboto-Italic.ttf") format("ttf"),
-    url("/public/fonts/Roboto-Light.ttf") format("ttf"),
-    url("/public/fonts/Roboto-LightItalic.ttf") format("ttf"),
-    url("/public/fonts/Roboto-Medium.ttf") format("ttf"),
-    url("/public/fonts/Roboto-MediumItalic.ttf") format("ttf"),
-    url("/public/fonts/Roboto-Regular.ttf") format("ttf"),
-    url("/public/fonts/Roboto-Thin.ttf") format("ttf"),
-    url("/public/fonts/Roboto-ThinItalic.ttf") format("ttf");
+  font-family: 'Roboto';
+  src:
+    local('Roboto'),
+    url('/public/fonts/Roboto-Black.ttf') format('ttf'),
+    url('/public/fonts/Roboto-BlackItalic.ttf') format('ttf'),
+    url('/public/fonts/Roboto-Bold.ttf') format('ttf'),
+    url('/public/fonts/Roboto-BoldItalic.ttf') format('ttf'),
+    url('/public/fonts/Roboto-Italic.ttf') format('ttf'),
+    url('/public/fonts/Roboto-Light.ttf') format('ttf'),
+    url('/public/fonts/Roboto-LightItalic.ttf') format('ttf'),
+    url('/public/fonts/Roboto-Medium.ttf') format('ttf'),
+    url('/public/fonts/Roboto-MediumItalic.ttf') format('ttf'),
+    url('/public/fonts/Roboto-Regular.ttf') format('ttf'),
+    url('/public/fonts/Roboto-Thin.ttf') format('ttf'),
+    url('/public/fonts/Roboto-ThinItalic.ttf') format('ttf');
 
   font-weight: 400;
   font-style: normal;
@@ -58,7 +60,7 @@ body {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: #fafafa;
 }
 
@@ -84,7 +86,7 @@ button::-moz-focus-inner {
 a,
 a:visited {
   text-decoration: none;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: black;
 }
 
