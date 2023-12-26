@@ -1,11 +1,14 @@
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './components/routes/AppRoutes'
+
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Avito</h1>
-            </header>
-        </div>
-    );
+        <>
+            <BrowserRouter>
+                <AppRoutes />
+            </BrowserRouter>
+        </>
+    )
 }
 
-export default App;
+export default App
