@@ -1,16 +1,13 @@
-import Auth from '../pages/Auth'
-import Profile from '../pages/Course'
-import MainPage from '../pages/MainPage'
-import SellerProfile from '../pages/SellerProfile'
-import Adv from '../pages/Adv'
-
+import Auth from '../pages/Auth/Auth'
+import Profile from '../pages/Profile/Profile'
+import Main from '../pages/Main/Main'
+import Adv from '../pages/Adv/Adv'
 
 import {
     MAIN_ROUTE,
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
     PROFILE_ROUTE,
-    SELLER_ROUTE,
     ADV_ROUTE
 } from '../utils/constants'
 
@@ -24,12 +21,8 @@ export const publicRoutes = [
         path: REGISTRATION_ROUTE
     },
     {
-        element: <MainPage />,
+        element: <Main />,
         path: MAIN_ROUTE
-    },
-    {
-        element: <SellerProfile />,
-        path: SELLER_ROUTE
     },
     {
         element: <Adv />,
