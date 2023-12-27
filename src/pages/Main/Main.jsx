@@ -1,7 +1,7 @@
 import s from './Main.module.css'
-import Header from '../../components/routes/common/Header/Header'
-import ProductList from '../../components/routes/product/ProductList/ProductList'
-import Form from '../../components/routes/common/Form/Form'
+import Header from '../../components/common/Header/Header'
+import ProductList from '../../components/product/ProductList/ProductList'
+import Form from '../../components/common/Form/Form'
 
 function Main() {
     return (

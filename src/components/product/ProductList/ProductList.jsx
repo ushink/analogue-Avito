@@ -1,5 +1,5 @@
 import s from './ProductList.module.css'
-import { products } from '../../../../mock/products'
+import { products } from '../../../mock/products'
 
 function ProductList() {
     return (
