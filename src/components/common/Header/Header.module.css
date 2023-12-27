@@ -18,7 +18,7 @@
     justify-content: end;
 }
 
-.btnMain {
+.btn {
     width: 224px;
     height: 40px;
     border: 1px solid #ffffff;
@@ -27,4 +27,5 @@
     color: #ffffff;
     font-size: 16px;
     line-height: 1;
+    margin-right: 10px;
 }

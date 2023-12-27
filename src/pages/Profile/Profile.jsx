@@ -1,9 +1,12 @@
+import Header from '../../components/common/Header/Header'
 import s from './Profile.module.css'
 
 function Profile() {
     return (
         <div className={s.wrapper}>
-            <h1>Profile</h1>
+            <div className={s.container}>
+                <Header />
+            </div>
         </div>
     )
 }
