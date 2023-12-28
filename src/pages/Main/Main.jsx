@@ -1,7 +1,8 @@
 import s from './Main.module.css'
 import Header from '../../components/common/Header/Header'
 import ProductList from '../../components/product/ProductList/ProductList'
-import Form from '../../components/common/Form/Form'
+import Menu from '../../components/common/Menu/Menu'
+import { productsAll } from '../../mock/products'
 
 function Main() {
     return (
@@ -9,17 +10,10 @@ function Main() {
             <div className={s.container}>
                 <Header />
                 <main className={s.main}>
-                    <div className={s.search}>
-                        <img
-                            className={s.img}
-                            src="./img/Logo.svg"
-                            alt="logo"
-                        />
-                        <Form />
-                    </div>
-                    <div className={s.containerMain}>
+                    <Menu />
+                    <div className={s.content}>
                         <h2 className={s.title}>Объявления</h2>
-                        <ProductList />
+                        <ProductList products={productsAll} />
                     </div>
                 </main>
             </div>
