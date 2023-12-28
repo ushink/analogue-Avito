@@ -1,0 +1,46 @@
+.button {
+    cursor: pointer;
+    padding: 12px 24px 16px;
+    height: 52px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+}
+
+.blue {
+    background-color: #009ee4;
+    color: #fff;
+    border: none;
+    width: 278px;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.blue:hover {
+    background: #0080c1;
+}
+
+.blue:active {
+    background-color: #0079b5;
+}
+
+.light {
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    color: #000;
+    width: 278px;
+    margin-top: 28px;
+}
+
+.light:hover {
+    background: #f4f5f6;
+}
+
+.light:active {
+    border-radius: 46px;
+    border: 1px solid #d0cece;
+    background: #d9d9d9;
+}
