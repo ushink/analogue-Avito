@@ -26,10 +26,106 @@
 }
 
 .title {
-    font-style: normal;
     font-weight: 500;
     font-size: 40px;
     line-height: 42px;
     color: #000000;
     margin-bottom: 30px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+
+.titleProfile {
+    color: #000;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 220%;
+    margin-bottom: 20px;
+}
+
+.box {
+    display: flex;
+    column-gap: 50px;
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.foto {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.btnChange {
+    color: #009ee4;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    background-color: transparent;
+}
+
+.form {
+    width: 630px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    margin-right: 14px;
+}
+
+.label {
+    color: #c4c4c4;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    padding-bottom: 4px;
+}
+
+.inputTel,
+.input {
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 13px 19px;
+    width: 300px;
+}
+
+.inputTel {
+    width: 614px;
+}
+
+.inputTel::placeholder,
+.input::placeholder {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.btnSave {
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    width: 154px;
+    height: 50px;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
 }

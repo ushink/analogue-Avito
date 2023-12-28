@@ -3,8 +3,10 @@ import s from './Header.module.css'
 import {
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
-    MAIN_ROUTE
+    MAIN_ROUTE,
+    PROFILE_ROUTE
 } from '../../../utils/constants'
+import { Link } from 'react-router-dom'
 
 function Header() {
     const { pathname } = useLocation()
@@ -16,11 +18,15 @@ function Header() {
         <header className={s.header}>
             <nav className={s.nav}>
                 {pathname === MAIN_ROUTE ? (
-                    <button className={s.btn}>Вход в личный кабинет</button>
+                    <Link to={LOGIN_ROUTE}>
+                        <button className={s.btn}>Вход в личный кабинет</button>
+                    </Link>
                 ) : (
                     <>
                         <button className={s.btn}>Разместить объявление</button>
-                        <button className={s.btn}>Личный кабинет</button>
+                        <Link to={PROFILE_ROUTE}>
+                            <button className={s.btn}>Личный кабинет</button>
+                        </Link>
                     </>
                 )}
             </nav>
