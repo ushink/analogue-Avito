@@ -18,3 +18,18 @@
     margin: 0 auto;
     background-color: #ffffff;
 }
+
+.content {
+    max-width: 1178px;
+    margin: 0 auto;
+    padding: 52px 10px 37px;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 42px;
+    color: #000000;
+    margin-bottom: 30px;
+}

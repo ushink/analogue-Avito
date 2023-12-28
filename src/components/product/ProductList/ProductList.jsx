@@ -1,7 +1,6 @@
 import s from './ProductList.module.css'
-import { products } from '../../../mock/products'
 
-function ProductList() {
+function ProductList({ products }) {
     return (
         <div className={s.products}>
             {products &&
