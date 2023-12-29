@@ -3,6 +3,7 @@ import Header from '../../components/common/Header/Header'
 import Menu from '../../components/common/Menu/Menu'
 import ProductList from '../../components/product/ProductList/ProductList'
 import { productsSeller } from '../../mock/products'
+import ShowTelephone from '../../components/ShowTelephone/ShowTelephone'
 
 function SellerProfile() {
     return (
@@ -23,12 +24,7 @@ function SellerProfile() {
                                         Продает товары с августа 2021
                                     </p>
                                 </div>
-                                <div className={s.boxTel}>
-                                    <h4 className={s.infoTel}>
-                                        Показать телефон
-                                    </h4>
-                                    <p className={s.tel}>8 905 ХХХ ХХ ХХ</p>
-                                </div>
+                                <ShowTelephone />
                             </div>
                         </div>
                         <h3 className={s.subtitle}>Товары продавца</h3>

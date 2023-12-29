@@ -12,6 +12,15 @@
     height: 270px;
     background-color: #f0f0f0;
     margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.productImg:hover {
+    border: 2px solid #009ee4;
+}
+
+.productImg:active {
+    background-color: #eceaea;
 }
 
 .productName {
@@ -21,6 +30,14 @@
     font-weight: 500;
     line-height: 120%;
     margin-bottom: 10px;
+}
+
+.productName:hover {
+    color: #0080c1;
+}
+
+.productName:active {
+    color: #c3d2d8;
 }
 
 .productPrice {
