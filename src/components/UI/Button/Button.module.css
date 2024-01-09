@@ -26,11 +26,13 @@
     opacity: 0.5;
 }
 
+.gray:hover,
 .custom:hover,
 .blue:hover {
     background: #0080c1;
 }
 
+.gray:active,
 .custom:active,
 .blue:active {
     background-color: #0079b5;
@@ -52,4 +54,11 @@
     border-radius: 46px;
     border: 1px solid #d0cece;
     background: #d9d9d9;
+}
+
+.gray {
+    background: #d9d9d9;
+    color: #fff;
+    width: 181px;
+    margin-top: 30px;
 }
