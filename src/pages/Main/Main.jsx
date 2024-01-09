@@ -13,7 +13,7 @@ function Main() {
                     <Menu />
                     <div className={s.content}>
                         <h2 className={s.title}>Объявления</h2>
-                        <ProductList products={productsAll} />
+                        <ProductList products={productsAll} isProfilePage={false}/>
                     </div>
                 </main>
             </div>

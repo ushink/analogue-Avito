@@ -49,7 +49,7 @@ function Profile() {
                             </div>
                         </div>
                         <h3 className={s.titleProfile}>Мои товары</h3>
-                        <ProductList products={productsUser} />
+                        <ProductList products={productsUser} isProfilePage={true}/>
                     </div>
                 </main>
             </div>

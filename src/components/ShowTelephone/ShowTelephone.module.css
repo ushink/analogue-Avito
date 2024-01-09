@@ -1,4 +1,5 @@
 .box {
+    cursor: pointer;
     line-height: 1;
     width: 214px;
     height: 62px;
@@ -8,6 +9,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.box:hover {
+    background: #0080c1;
+}
+
+.box:active {
+    background-color: #0079b5;
 }
 
 .title,
