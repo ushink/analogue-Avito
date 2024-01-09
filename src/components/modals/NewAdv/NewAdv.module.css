@@ -1,0 +1,123 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 220%;
+}
+
+.cross {
+    cursor: pointer;
+    position: absolute;
+    top: 38px;
+    right: 20px;
+}
+
+.cross:before,
+.cross:after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #d9d9d9;
+}
+.cross:before {
+    transform: rotate(45deg);
+}
+.cross:after {
+    transform: rotate(-45deg);
+}
+.cross:hover::before,
+.cross:hover::after {
+    background: #009ee4;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.label {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.select {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    margin-left: 10px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputTitle,
+.description,
+.price {
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 13px 19px;
+    width: 500px;
+    flex-shrink: 0;
+    background: #fff;
+}
+
+.description {
+    padding: 13px 19px 163px;
+}
+
+.price {
+    width: 200px;
+    text-align: end;
+}
+
+.inputTitle::placeholder,
+.description::placeholder,
+.price::placeholder {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.price::placeholder {
+    color: #000;
+}
+
+.price::-webkit-outer-spin-button,
+.price::-webkit-inner-spin-button {
+    display: none;
+    margin: 0;
+}
+
+.boxImg {
+    display: flex;
+    column-gap: 10px;
+}
+
+.img {
+    cursor: pointer;
+    width: 90px;
+    height: 90px;
+}
+
+.img:hover {
+    border: 2px solid #009ee4;
+}
+
+.img:active {
+    background-color: #eceaea;
+}

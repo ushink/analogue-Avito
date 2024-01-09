@@ -7,9 +7,14 @@ import {
     PROFILE_ROUTE
 } from '../../../utils/constants'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import Modal from '../../UI/Modal/Modal'
+import NewAdv from '../../modals/NewAdv/NewAdv'
 
 function Header() {
     const { pathname } = useLocation()
+
+    const [modalActive, setModalActive] = useState(false)
 
     if (pathname === LOGIN_ROUTE || pathname === REGISTRATION_ROUTE)
         return <></>
@@ -23,10 +28,18 @@ function Header() {
                     </Link>
                 ) : (
                     <>
-                        <button className={s.btn}>Разместить объявление</button>
+                        <button
+                            className={s.btn}
+                            onClick={() => setModalActive(true)}
+                        >
+                            Разместить объявление
+                        </button>
                         <Link to={PROFILE_ROUTE}>
                             <button className={s.btn}>Личный кабинет</button>
                         </Link>
+                        <Modal active={modalActive} setActive={setModalActive}>
+                            <NewAdv setActive={setModalActive} />
+                        </Modal>
                     </>
                 )}
             </nav>
