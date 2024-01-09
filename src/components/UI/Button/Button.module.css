@@ -8,6 +8,7 @@
     letter-spacing: -0.05px;
 }
 
+.custom,
 .blue {
     background-color: #009ee4;
     color: #fff;
@@ -15,14 +16,22 @@
     width: 278px;
 }
 
+.custom {
+    max-width: 225px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
 .disabled {
     opacity: 0.5;
 }
 
+.custom:hover,
 .blue:hover {
     background: #0080c1;
 }
 
+.custom:active,
 .blue:active {
     background-color: #0079b5;
 }

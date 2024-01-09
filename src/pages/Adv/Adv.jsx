@@ -1,10 +1,9 @@
 import s from './Adv.module.css'
-import { Link } from 'react-router-dom'
 import ShowTelephone from '../../components/ShowTelephone/ShowTelephone'
 import Header from '../../components/common/Header/Header'
 import Menu from '../../components/common/Menu/Menu'
 import { pictures } from '../../mock/pictures'
-import { SELLER_ROUTE } from '../../utils/constants'
+import Seller from '../../components/product/Seller/Seller'
 
 function Adv() {
     return (
@@ -36,17 +35,7 @@ function Adv() {
                                 <h4 className={s.reviews}>23 отзыва</h4>
                                 <h2 className={s.price}>2 200 ₽</h2>
                                 <ShowTelephone />
-                                <div className={s.seller}>
-                                    <div className={s.photo}></div>
-                                    <div className={s.personal}>
-                                        <Link to={SELLER_ROUTE}>
-                                            <h3 className={s.name}>Кирилл</h3>
-                                        </Link>
-                                        <p className={s.data}>
-                                            Продает товары с августа 2021
-                                        </p>
-                                    </div>
-                                </div>
+                                <Seller />
                             </div>
                         </div>
                         <div className={s.description}>

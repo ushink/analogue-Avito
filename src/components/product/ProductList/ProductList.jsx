@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router'
 import s from './ProductList.module.css'
 
-function ProductList({ products, profile = false }) {
+function ProductList({ products, isProfilePage }) {
     const navigate = useNavigate()
     return (
         <div className={s.products}>
@@ -10,7 +10,11 @@ function ProductList({ products, profile = false }) {
                     <div
                         className={s.product}
                         key={el.id}
-                        onClick={() => !profile && navigate(`/adv/${el.id}`)}
+                        onClick={() =>
+                            isProfilePage
+                                ? navigate(`/profile/adv/${el.id}`)
+                                : navigate(`/adv/${el.id}`)
+                        }
                     >
                         <div className={s.productImg}></div>
                         <h3 className={s.productName}>{el.name}</h3>

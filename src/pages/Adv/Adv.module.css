@@ -93,39 +93,6 @@
     margin-bottom: 20px;
 }
 
-.seller {
-    display: flex;
-    column-gap: 12px;
-    margin-top: 34px;
-}
-
-.photo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #f0f0f0;
-}
-
-.name {
-    color: #009ee4;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 130%;
-    cursor: pointer;
-}
-
-.name:hover {
-    color: #0080c1;
-}
-
-.name:active {
-    color: #c3d2d8;
-}
-
-.data {
-    color: #5f5f5f;
-    line-height: 200%;
-}
 
 .subtitle {
     color: #000;

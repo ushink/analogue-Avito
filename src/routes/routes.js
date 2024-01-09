@@ -10,7 +10,8 @@ import {
     REGISTRATION_ROUTE,
     PROFILE_ROUTE,
     ADV_ROUTE,
-    SELLER_ROUTE
+    SELLER_ROUTE,
+    MYADV_ROUTE
 } from '../utils/constants'
 
 export const publicRoutes = [
@@ -40,5 +41,9 @@ export const privateRoutes = [
     {
         element: <Profile />,
         path: PROFILE_ROUTE
+    },
+    {
+        element: <Adv />,
+        path: MYADV_ROUTE
     }
 ]

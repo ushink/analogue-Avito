@@ -15,7 +15,7 @@ function Menu() {
 
     return (
         <div className={s.menu}>
-            <img className={s.img} src="../img/Logo.svg" alt="logo" />
+            <img className={s.img} src="../../img/Logo.svg" alt="logo" />
             {pathname === MAIN_ROUTE ? (
                 <form className={s.form} action="#">
                     <input
