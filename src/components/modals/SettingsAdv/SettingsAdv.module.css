@@ -87,7 +87,7 @@
 
 .price {
     width: 200px;
-    text-align: end;
+    /* text-align: end; */
 }
 
 .inputTitle::placeholder,
