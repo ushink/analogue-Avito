@@ -2,9 +2,14 @@ import { useLocation } from 'react-router'
 import s from './ShowTelephone.module.css'
 import { MYADV_ROUTE } from '../../utils/constants'
 import Button from '../UI/Button/Button'
+import { useState } from 'react'
+import Modal from '../UI/Modal/Modal'
+import SettingsAdv from '../modals/SettingsAdv/SettingsAdv'
 
 function ShowTelephone() {
     const { pathname } = useLocation()
+
+    const [modalActive, setModalActive] = useState(false)
 
     const advPage = pathname.slice(0, -2) === MYADV_ROUTE.slice(0, -4)
 
@@ -17,8 +22,22 @@ function ShowTelephone() {
                 </div>
             ) : (
                 <>
-                    <Button color={'custom'}>{'Редактировать'}</Button>
-                    <Button color={'custom'}>{'Снять с публикации'}</Button>
+                    <Button
+                        color={'custom'}
+                        onClick={() => setModalActive(true)}
+                    >
+                        {'Редактировать'}
+                    </Button>
+                    <Button
+                        color={'custom'}
+                        onClick={() => alert('В процессе разработки')}
+                    >
+                        {'Снять с публикации'}
+                    </Button>
+
+                    <Modal active={modalActive} setActive={setModalActive}>
+                        <SettingsAdv setActive={setModalActive} />
+                    </Modal>
                 </>
             )}
         </>

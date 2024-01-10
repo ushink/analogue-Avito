@@ -1,13 +1,17 @@
 /* eslint-disable no-unused-vars */
 import { pictures } from '../../../mock/pictures'
-import s from './NewAdv.module.css'
+import s from './SettingsAdv.module.css'
 import { useState } from 'react'
 import Button from '../../UI/Button/Button'
 
 function NewAdv({ setActive }) {
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState('')
+    const [title, setTitle] = useState(
+        'Ракетка для большого тенниса Triumph Pro STС Б/У'
+    )
+    const [description, setDescription] = useState(
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    )
+    const [price, setPrice] = useState(2200)
 
     return (
         <div className={s.adv}>
@@ -30,6 +34,7 @@ function NewAdv({ setActive }) {
                         onChange={(e) => {
                             setTitle(e.target.value)
                         }}
+                        value={title}
                     />
                 </form>
                 <form className={s.item}>
@@ -41,6 +46,7 @@ function NewAdv({ setActive }) {
                         onChange={(e) => {
                             setDescription(e.target.value)
                         }}
+                        value={description}
                     ></textarea>
                 </form>
                 <div className={s.item}>
@@ -74,7 +80,7 @@ function NewAdv({ setActive }) {
                     </div>
                 </form>
             </div>
-            <Button color={'gray'}>{'Опубликовать'}</Button>
+            <Button color={'gray'}>{'Сохранить'}</Button>
         </div>
     )
 }
