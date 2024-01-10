@@ -73,8 +73,8 @@ function NewAdv({ setActive }) {
                         <span className={s.currency}>₽</span>
                     </div>
                 </form>
+                <Button color={'gray'}>{'Опубликовать'}</Button>
             </div>
-            <Button color={'gray'}>{'Опубликовать'}</Button>
         </div>
     )
 }

@@ -2,10 +2,15 @@ import s from './Adv.module.css'
 import ShowTelephone from '../../components/ShowTelephone/ShowTelephone'
 import Header from '../../components/common/Header/Header'
 import Menu from '../../components/common/Menu/Menu'
+import Modal from '../../components/UI/Modal/Modal'
+import Reviews from '../../components/modals/Reviews/Reviews'
 import { pictures } from '../../mock/pictures'
 import Seller from '../../components/product/Seller/Seller'
+import { useState } from 'react'
 
 function Adv() {
+    const [modalActive, setModalActive] = useState(false)
+
     return (
         <div className={s.wrapper}>
             <div className={s.container}>
@@ -32,7 +37,12 @@ function Adv() {
                                 </h2>
                                 <p className={s.time}>Сегодня в 10:45</p>
                                 <p className={s.city}>Санкт-Петербург</p>
-                                <h4 className={s.reviews}>23 отзыва</h4>
+                                <h4
+                                    className={s.reviews}
+                                    onClick={() => setModalActive(true)}
+                                >
+                                    23 отзыва
+                                </h4>
                                 <h2 className={s.price}>2 200 ₽</h2>
                                 <ShowTelephone />
                                 <Seller />
@@ -55,6 +65,9 @@ function Adv() {
                     </div>
                 </main>
             </div>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <Reviews setActive={setModalActive} />
+            </Modal>
         </div>
     )
 }

@@ -1,0 +1,82 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 220%;
+}
+
+.cross {
+    cursor: pointer;
+    position: absolute;
+    top: 38px;
+    right: 20px;
+}
+
+.cross:before,
+.cross:after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #d9d9d9;
+}
+.cross:before {
+    transform: rotate(45deg);
+}
+.cross:after {
+    transform: rotate(-45deg);
+}
+.cross:hover::before,
+.cross:hover::after {
+    background: #009ee4;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+}
+
+.label {
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 200%;
+    padding-bottom: 14px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews {
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 13px 19px 66px;
+    width: 652px;
+    flex-shrink: 0;
+    background: #fff;
+    font-size: 16px;
+    line-height: 150%;
+    resize: none;
+}
+
+.reviews::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.reviews::placeholder {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    line-height: 24px;
+}
