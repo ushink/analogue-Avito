@@ -41,8 +41,7 @@ function NewAdv({ setActive }) {
                         onChange={(e) => {
                             setDescription(e.target.value)
                         }}
-                    >
-                    </textarea>
+                    ></textarea>
                 </form>
                 <div className={s.item}>
                     <label className={s.label}>
@@ -62,14 +61,17 @@ function NewAdv({ setActive }) {
                 </div>
                 <form className={s.item}>
                     <label className={s.label}>Цена</label>
-                    <input
-                        placeholder="₽"
-                        className={s.price}
-                        type="number"
-                        onChange={(e) => {
-                            setPrice(e.target.value)
-                        }}
-                    />
+                    <div className={s.price}>
+                        <input
+                            className={s.inputPrice}
+                            type="number"
+                            onChange={(e) => {
+                                setPrice(e.target.value)
+                            }}
+                            value={price}
+                        />
+                        <span className={s.currency}>₽</span>
+                    </div>
                 </form>
             </div>
             <Button color={'gray'}>{'Опубликовать'}</Button>

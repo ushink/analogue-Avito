@@ -73,6 +73,8 @@
     width: 500px;
     flex-shrink: 0;
     background: #fff;
+    font-size: 16px;
+    line-height: 150%;
 }
 
 .description {
@@ -87,26 +89,33 @@
 
 .price {
     width: 200px;
-    text-align: end;
+    display: flex;
 }
 
 .inputTitle::placeholder,
-.description::placeholder,
-.price::placeholder {
+.description::placeholder {
     background-color: transparent;
     color: rgba(0, 0, 0, 0.3);
     font-size: 16px;
     line-height: 24px;
 }
 
-.price::placeholder {
-    color: #000;
+.inputPrice {
+    border: none;
+    padding-right: 10px;
+    width: 154px;
 }
 
-.price::-webkit-outer-spin-button,
-.price::-webkit-inner-spin-button {
+.inputPrice::-webkit-outer-spin-button,
+.inputPrice::-webkit-inner-spin-button {
     display: none;
     margin: 0;
+}
+
+.currency {
+    color: #000;
+    font-size: 16px;
+    line-height: 150%;
 }
 
 .boxImg {
