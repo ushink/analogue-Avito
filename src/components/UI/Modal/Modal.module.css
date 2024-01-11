@@ -21,7 +21,7 @@
 
 .content,
 .contentActive {
-    padding: 20px 50px;
+    padding: 20px 50px 42px;
     border-radius: 12px;
     background-color: #ffffff;
     transform: scale(0.5);

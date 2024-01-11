@@ -84,6 +84,14 @@
     cursor: pointer;
 }
 
+.reviews:hover {
+    color: #0273a4;
+}
+
+.reviews:active {
+    text-decoration: underline;
+}
+
 .price {
     color: #000;
     font-size: 28px;
@@ -92,7 +100,6 @@
     margin-top: 34px;
     margin-bottom: 20px;
 }
-
 
 .subtitle {
     color: #000;
