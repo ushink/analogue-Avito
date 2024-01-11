@@ -56,7 +56,7 @@
     flex-direction: column;
 }
 
-.reviews {
+.inputReviews {
     color: #000;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 6px;
@@ -69,14 +69,67 @@
     resize: none;
 }
 
-.reviews::-webkit-scrollbar {
+.inputReviews::-webkit-scrollbar {
     width: 0px;
     height: 0px;
 }
 
-.reviews::placeholder {
+.inputReviews::placeholder {
     background-color: transparent;
     color: rgba(0, 0, 0, 0.3);
     font-size: 16px;
     line-height: 24px;
+}
+
+.comments {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.comments::-webkit-scrollbar {
+    width: 6px; /* ширина всей полосы прокрутки */
+}
+
+.comments::-webkit-scrollbar-track {
+    background: transparent; /* цвет зоны отслеживания */
+}
+
+.comments::-webkit-scrollbar-thumb {
+    background-color: #d9d9d9; /* цвет бегунка */
+    border-radius: 10px; /* округлось бегунка */
+}
+
+.commentator {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.name,
+.boxHeader {
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 200%;
+}
+
+.data {
+    color: #5f5f5f;
+    font-size: 16px;
+    line-height: 200%;
+}
+
+.boxReview {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    max-width: 600px;
 }
