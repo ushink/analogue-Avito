@@ -1,18 +1,12 @@
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import AppRoutes from './components/routes/AppRoutes'
-import store from './store/store'
 
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <AppRoutes />
-                </BrowserRouter>
-            </Provider>
-        </>
-    )
+    // const user = useSelector((state) => state.auth.access)
+    const user = JSON.parse(localStorage.getItem('auth') || '{}')
+    console.log(user)
+
+    return <AppRoutes user={user} />
 }
 
 export default App

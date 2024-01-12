@@ -38,7 +38,7 @@ const initialState = {
 // })
 
 export const authSlice = createSlice({
-    name: 'authReducer',
+    name: 'user',
 
     initialState: getAuthFromLocalStorage() ?? initialState,
     reducers: {

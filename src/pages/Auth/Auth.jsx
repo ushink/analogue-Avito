@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import s from './Auth.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { useDispatch } from 'react-redux'
 import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
 import RegistInput from '../../components/RegistInput/RegistInput'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/constants'
-import { authSlice } from '../../store/slice/auth'
+import { setAuth } from '../../store/slice/auth'
 import {
     useLoginMutation,
     useRegistrationMutation
@@ -29,7 +29,8 @@ function Auth() {
 
     const loginPage = pathname === LOGIN_ROUTE
 
-    const [login, { error }] = useLoginMutation()
+    const [login, { data: loginData, isSuccess: isLoginSuccess }] =
+        useLoginMutation()
     const [registration] = useRegistrationMutation()
 
     const handleLogin = async () => {
@@ -38,16 +39,7 @@ function Auth() {
             setValidationError(true)
         } else {
             try {
-                const response = await login({ email, password })
-
-                dispatch(
-                    authSlice({
-                        access: response.data.access_token,
-                        refresh: response.data.refresh_token
-                    })
-                )
-
-                navigate('/profile')
+                await login({ email, password })
             } catch (error) {
                 console.log('error', error)
             }
@@ -60,7 +52,7 @@ function Auth() {
             setValidationError(true)
         } else {
             try {
-                const response = await registration({
+                await registration({
                     email,
                     name,
                     surname,
@@ -74,6 +66,19 @@ function Auth() {
             }
         }
     }
+
+    useEffect(() => {
+        if (isLoginSuccess) {
+            dispatch(
+                setAuth({
+                    access: loginData.access_token,
+                    refresh: loginData.refresh_token
+                })
+            )
+
+            navigate('/profile')
+        }
+    }, [isLoginSuccess])
 
     return (
         <div className={s.page}>
