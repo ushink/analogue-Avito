@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const adsApi = createApi({
     reducerPath: 'ads',
-    tagTypes: ['ads', 'favAds'],
+    tagTypes: ['ads', 'favAds', 'comments'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8090/'
     }),
@@ -32,8 +32,30 @@ export const adsApi = createApi({
                           { type: 'favAds', id: 'LIST' }
                       ]
                     : [{ type: 'favAds', id: 'LIST' }]
+        }),
+
+        // получить объявление по id
+        getAdsId: build.query({
+            query: (id) => `/ads/${id}`
+        }),
+
+        // получить комментарии по id
+        getComments: build.query({
+            query: (id) => `/ads/${id}/comments`,
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ id }) => ({ type: 'comments', id })),
+                          { type: 'comments', id: 'LIST' }
+                      ]
+                    : [{ type: 'comments', id: 'LIST' }]
         })
     })
 })
 
-export const { useGetAdsAllQuery, useGetFavAdsQuery } = adsApi
+export const {
+    useGetAdsAllQuery,
+    useGetFavAdsQuery,
+    useGetAdsIdQuery,
+    useGetCommentsQuery
+} = adsApi

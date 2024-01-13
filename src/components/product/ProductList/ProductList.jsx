@@ -17,11 +17,13 @@ function ProductList({ ads, isProfilePage }) {
                         }
                     >
                         {el.images.length !== 0 ? (
-                            <img
-                                className={s.productImg}
-                                src={`http://localhost:8090/${el.images[0]?.url}`}
-                                alt="img"
-                            />
+                            <div className={s.productImg}>
+                                <img
+                                    className={s.adsImg}
+                                    src={`http://localhost:8090/${el.images[0]?.url}`}
+                                    alt="img"
+                                />
+                            </div>
                         ) : (
                             <>
                                 <div className={s.productImg}></div>
@@ -35,7 +37,8 @@ function ProductList({ ads, isProfilePage }) {
                         <p className={s.productCity}>{el.user.city}</p>
                         <p className={s.productData}>
                             {new Date(el.created_on).toLocaleString('ru', {
-                                addSuffix: true
+                                dateStyle: 'long',
+                                timeStyle: 'short'
                             })}
                         </p>
                     </div>
