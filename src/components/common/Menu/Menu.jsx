@@ -7,7 +7,7 @@ import {
 } from '../../../utils/constants'
 import { Link } from 'react-router-dom'
 
-function Menu() {
+function Menu({ setSearch, ads }) {
     const { pathname } = useLocation()
 
     if (pathname === LOGIN_ROUTE || pathname === REGISTRATION_ROUTE)
@@ -22,8 +22,11 @@ function Menu() {
                         className={s.search}
                         type="search"
                         placeholder="Поиск по объявлениям"
+                        onChange={(e) => setSearch(e.target.value)}
                     />
-                    <button className={s.btnSearch}>Найти</button>
+                    <button className={s.btnSearch} onClick={() => ads}>
+                        Найти
+                    </button>
                 </form>
             ) : (
                 <Link to={MAIN_ROUTE}>
