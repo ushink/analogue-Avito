@@ -1,18 +1,12 @@
-import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
+/* eslint-disable no-unused-vars */
 import AppRoutes from './components/routes/AppRoutes'
-import store from './store/store'
+import { useSelector } from 'react-redux'
 
 function App() {
-    return (
-        <>
-            <Provider store={store}>
-                <BrowserRouter>
-                    <AppRoutes />
-                </BrowserRouter>
-            </Provider>
-        </>
-    )
+    // const user = useSelector((state) => state.auth.access)
+    const user = JSON.parse(localStorage.getItem('user') || null)
+
+    return <AppRoutes user={user} />
 }
 
 export default App

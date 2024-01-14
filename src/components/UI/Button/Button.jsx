@@ -1,11 +1,11 @@
 import s from './Button.module.css'
 
-function Button({ children, color, onClick, isDone = false }) {
+function Button({ children, color, onClick, disabled }) {
     return (
         <button
-            className={`${s.button} ${s[color]} ${isDone && s.disabled}`}
+            className={`${s.button} ${s[color]} ${disabled && s.disabled}`}
             onClick={onClick}
-            disabled={isDone}
+            disabled={disabled}
         >
             {children}
         </button>

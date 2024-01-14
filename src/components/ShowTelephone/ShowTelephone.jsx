@@ -6,20 +6,32 @@ import { useState } from 'react'
 import Modal from '../UI/Modal/Modal'
 import SettingsAdv from '../modals/SettingsAdv/SettingsAdv'
 
-function ShowTelephone() {
+function ShowTelephone({ data }) {
     const { pathname } = useLocation()
 
     const [modalActive, setModalActive] = useState(false)
+    const [phone, setPhone] = useState(false)
 
     const advPage = pathname.slice(0, -2) === MYADV_ROUTE.slice(0, -4)
 
     return (
         <>
             {!advPage ? (
-                <div className={s.box}>
-                    <h4 className={s.title}>Показать телефон</h4>
-                    <p className={s.number}>8 905 ХХХ ХХ ХХ</p>
-                </div>
+                <>
+                    {data?.user?.phone && (
+                        <div className={s.box} onClick={() => setPhone(true)}>
+                            <h4 className={s.title}>Показать телефон</h4>
+                            <p className={s.number}>
+                                {phone
+                                    ? `${data?.user?.phone}`
+                                    : `${
+                                          data?.user?.phone?.substr(0, 4) +
+                                          ' ХХХ ХХ ХХ'
+                                      }`}
+                            </p>
+                        </div>
+                    )}
+                </>
             ) : (
                 <>
                     <Button

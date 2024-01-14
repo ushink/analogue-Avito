@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 import { publicRoutes, privateRoutes } from '../../routes/routes'
+import ProtectedRoute from './ProtectedRoute'
 
-function AppRoutes() {
+function AppRoutes({ user }) {
     return (
         <Routes>
-            <Route>
+            <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
                 {privateRoutes.map((r) => (
                     <Route key={r.path} element={r.element} path={r.path} />
                 ))}
