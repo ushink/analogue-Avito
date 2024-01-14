@@ -9,7 +9,11 @@ function Seller({ data }) {
 
     return (
         <div className={s.seller}>
-            <div className={s.photo}></div>
+            <img
+                className={s.photo}
+                src={`http://localhost:8090/${data?.user?.avatar}`}
+                alt="img"
+            />
             {advPage ? (
                 <div className={s.personal}>
                     <Link to={`/seller/${data?.user?.id}`}>

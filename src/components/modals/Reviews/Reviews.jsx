@@ -2,9 +2,8 @@
 import s from './Reviews.module.css'
 import { useState } from 'react'
 import Button from '../../UI/Button/Button'
-import { comments } from '../../../mock/comments'
 
-function Reviews({ setActive }) {
+function Reviews({ setActive, comments }) {
     const user = JSON.parse(localStorage.getItem('user') || null)
 
     const [reviews, setReviews] = useState('')
@@ -40,21 +39,37 @@ function Reviews({ setActive }) {
                 </form>
 
                 <div className={s.comments}>
-                    {comments.map((el) => (
-                        <div className={s.commentator} key={el.id}>
-                            <div className={s.photo}></div>
-                            <div className={s.personal}>
-                                <h3 className={s.name}>
-                                    {el.name}{' '}
-                                    <span className={s.data}>{el.data}</span>
-                                </h3>
-                                <div className={s.box}>
-                                    <h3 className={s.boxHeader}>Комментарий</h3>
-                                    <p className={s.boxReview}>{el.comment}</p>
+                    {comments &&
+                        comments.map((el) => (
+                            <div className={s.commentator} key={el?.id}>
+                                <img
+                                    className={s.photo}
+                                    src={`http://localhost:8090/${el?.author?.avatar}`}
+                                    alt="img"
+                                />
+                                <div className={s.personal}>
+                                    <h3 className={s.name}>
+                                        {el?.author?.name}
+                                        <span className={s.data}>
+                                            {new Date(
+                                                el?.created_on
+                                            ).toLocaleString('ru', {
+                                                dateStyle: 'long',
+                                                timeStyle: 'short'
+                                            })}
+                                        </span>
+                                    </h3>
+                                    <div className={s.box}>
+                                        <h3 className={s.boxHeader}>
+                                            Комментарий
+                                        </h3>
+                                        <p className={s.boxReview}>
+                                            {el?.text}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
                 </div>
             </div>
         </div>
