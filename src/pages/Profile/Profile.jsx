@@ -1,11 +1,29 @@
+import { useDispatch } from 'react-redux'
+import Button from '../../components/UI/Button/Button'
 import Header from '../../components/common/Header/Header'
 import Menu from '../../components/common/Menu/Menu'
 import ProductList from '../../components/product/ProductList/ProductList'
 import { formInfo } from '../../mock/formInfo'
 import { productsUser } from '../../mock/products'
 import s from './Profile.module.css'
+import { logout } from '../../store/slice/auth'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router'
+import { useState } from 'react'
 
 function Profile() {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const [isButtonActiv, setIsButtonActiv] = useState(false)
+
+    const handelLogout = () => {
+        dispatch(logout())
+        toast.success('Успешно')
+        localStorage.clear()
+        setIsButtonActiv(true)
+        navigate('/login')
+    }
     return (
         <div className={s.wrapper}>
             <div className={s.container}>
@@ -42,14 +60,27 @@ function Profile() {
                                             />
                                         </div>
                                     ))}
-                                    <button className={s.btnSave}>
-                                        Сохранить
-                                    </button>
+                                    <Button
+                                        color={'btnSave'}
+                                        disabled={isButtonActiv}
+                                    >
+                                        {'Сохранить'}
+                                    </Button>
+                                    <Button
+                                        color={'btnLogout'}
+                                        onClick={() => handelLogout()}
+                                        disabled={isButtonActiv}
+                                    >
+                                        {'Выйти из профиля'}
+                                    </Button>
                                 </form>
                             </div>
                         </div>
                         <h3 className={s.titleProfile}>Мои товары</h3>
-                        <ProductList products={productsUser} isProfilePage={true}/>
+                        <ProductList
+                            products={productsUser}
+                            isProfilePage={true}
+                        />
                     </div>
                 </main>
             </div>

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import { createAsyncThunk } from '@reduxjs/toolkit'
+import { useSelector } from 'react-redux'
 
 const AUTH_KEY = 'auth'
 
@@ -26,19 +26,8 @@ const initialState = {
     surname: null
 }
 
-// export const fetchAuth = createAsyncThunk('fetchAuth', async (body) => {
-//     console.log(body)
-
-//     const response = await fetch('http://localhost:8090/auth/login', {
-//         method: 'POST',
-//         body: JSON.stringify(body)
-//     })
-//     const data = await response.json()
-//     return data
-// })
-
 export const authSlice = createSlice({
-    name: 'user',
+    name: 'auth',
 
     initialState: getAuthFromLocalStorage() ?? initialState,
     reducers: {
@@ -58,17 +47,53 @@ export const authSlice = createSlice({
             state.surname = payload.surname
 
             localStorage.setItem(AUTH_KEY, JSON.stringify(state))
+        },
+        logout: (state) => {
+            localStorage.clear()
+            state.refresh = null
+            state.access = null
+            state.id = null
+            state.name = null
+            state.email = null
+            state.city = null
+            state.avatar = null
+            state.sells_from = null
+            state.phone = null
+            state.role = null
+            state.surname = null
         }
     }
-    // extraReducers: (builder) => {
-    //     builder.addCase(fetchAuth.fulfilled, (state, action) => {
-    //         state.auth = action.payload
-
-    //         localStorage.setItem(AUTH_KEY, JSON.stringify(state))
-    //     })
-    // }
 })
 
-export const { setAuth } = authSlice.actions
+export const { setAuth, logout } = authSlice.actions
 
 export default authSlice.reducer
+
+export const useAuthSelector = () => {
+    const {
+        refresh,
+        access,
+        id,
+        name,
+        email,
+        city,
+        avatar,
+        sells_from,
+        phone,
+        role,
+        surname
+    } = useSelector((store) => store.auth)
+    return {
+        refresh,
+        access,
+        id,
+        name,
+        email,
+        city,
+        avatar,
+        sells_from,
+        phone,
+        role,
+        surname
+    }
+}

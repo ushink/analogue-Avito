@@ -5,6 +5,8 @@ import Button from '../../UI/Button/Button'
 import { comments } from '../../../mock/comments'
 
 function Reviews({ setActive }) {
+    const user = JSON.parse(localStorage.getItem('user') || null)
+
     const [reviews, setReviews] = useState('')
 
     return (
@@ -29,8 +31,13 @@ function Reviews({ setActive }) {
                             setReviews(e.target.value)
                         }}
                     ></textarea>
+                    <Button
+                        color={!user ? 'gray' : 'btnReview'}
+                        disabled={Boolean(!user)}
+                    >
+                        {'Опубликовать'}
+                    </Button>
                 </form>
-                <Button color={'gray'}>{'Опубликовать'}</Button>
 
                 <div className={s.comments}>
                     {comments.map((el) => (

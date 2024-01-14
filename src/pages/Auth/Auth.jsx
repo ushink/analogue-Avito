@@ -80,7 +80,7 @@ function Auth() {
         }
     }
 
-    // эффект при успешном входе/регстрации
+    // эффект при успешном входе/регистрации
     useEffect(() => {
         if (isLoginSuccess) {
             toast.success('Успешно')
@@ -93,7 +93,6 @@ function Auth() {
             localStorage.setItem('user', true)
             navigate('/profile')
         }
-
         if (isRegisterSuccess) {
             toast.success('Регистрация пройдена успешно')
             dispatch(
@@ -107,7 +106,7 @@ function Auth() {
         }
     }, [isLoginSuccess, isRegisterSuccess])
 
-    // эффект при ошибке входа/регстрации
+    // эффект при ошибке входа/регистрации
     useEffect(() => {
         if (isLoginError) {
             toast.error(loginError.data.detail)
