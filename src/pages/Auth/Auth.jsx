@@ -12,6 +12,7 @@ import {
     useLoginMutation,
     useRegistrationMutation
 } from '../../services/authApi'
+import { toast } from 'react-toastify'
 
 function Auth() {
     const { pathname } = useLocation()
@@ -26,59 +27,97 @@ function Auth() {
     const [password, setPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
     const [validationError, setValidationError] = useState('')
+    const [isButtonActiv, setIsButtonActiv] = useState(false)
 
     const loginPage = pathname === LOGIN_ROUTE
 
-    const [login, { data: loginData, isSuccess: isLoginSuccess }] =
-        useLoginMutation()
-    const [registration] = useRegistrationMutation()
+    const [
+        login,
+        {
+            data: loginData,
+            isSuccess: isLoginSuccess,
+            error: loginError,
+            isError: isLoginError
+        }
+    ] = useLoginMutation()
+    const [
+        registration,
+        {
+            data: registerData,
+            isSuccess: isRegisterSuccess,
+            error: registerError,
+            isError: isRegisterError
+        }
+    ] = useRegistrationMutation()
 
+    // функция входа
     const handleLogin = async () => {
         if (email === '' || password === '') {
-            console.log('Укажите почту/пароль')
+            toast.error('Введите почту/пароль')
             setValidationError(true)
-        } else {
-            try {
-                await login({ email, password })
-            } catch (error) {
-                console.log('error', error)
-            }
+        }
+        if (email && password) {
+            setIsButtonActiv(true)
+            await login({ email, password })
         }
     }
 
+    // функция регистрации
     const handleRegister = async () => {
         if (password !== repeatPassword) {
-            console.log('Пароли не совпадают')
+            toast.error('Пароли не совпадают')
             setValidationError(true)
-        } else {
-            try {
-                await registration({
-                    email,
-                    name,
-                    surname,
-                    city,
-                    password
-                })
-
-                navigate('/profile')
-            } catch (error) {
-                console.log('error', error)
-            }
+        }
+        if (email && password) {
+            setIsButtonActiv(true)
+            await registration({
+                email,
+                name,
+                surname,
+                city,
+                password
+            })
         }
     }
 
+    // эффект при успешном входе/регстрации
     useEffect(() => {
         if (isLoginSuccess) {
+            toast.success('Успешно')
             dispatch(
                 setAuth({
                     access: loginData.access_token,
                     refresh: loginData.refresh_token
                 })
             )
-
+            localStorage.setItem('user', true)
             navigate('/profile')
         }
-    }, [isLoginSuccess])
+
+        if (isRegisterSuccess) {
+            toast.success('Регистрация пройдена успешно')
+            dispatch(
+                setAuth({
+                    access: registerData.access_token,
+                    refresh: registerData.refresh_token
+                })
+            )
+            localStorage.setItem('user', true)
+            navigate('/profile')
+        }
+    }, [isLoginSuccess, isRegisterSuccess])
+
+    // эффект при ошибке входа/регстрации
+    useEffect(() => {
+        if (isLoginError) {
+            toast.error(loginError.data.detail)
+            setIsButtonActiv(false)
+        }
+        if (isRegisterError) {
+            toast.error(registerError.data.detail)
+            setIsButtonActiv(false)
+        }
+    }, [isLoginError, isRegisterError])
 
     return (
         <div className={s.page}>
@@ -119,6 +158,7 @@ function Auth() {
                 <Button
                     color={'blue'}
                     onClick={loginPage ? handleLogin : handleRegister}
+                    disabled={isButtonActiv}
                 >
                     {loginPage ? 'Войти' : 'Зарегистрироваться'}
                 </Button>
