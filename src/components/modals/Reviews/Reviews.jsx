@@ -2,11 +2,39 @@
 import s from './Reviews.module.css'
 import { useState } from 'react'
 import Button from '../../UI/Button/Button'
+import { usePostCommentsMutation } from '../../../services/adsApi'
+import { toast } from 'react-toastify'
+import { useAuthSelector } from '../../../store/slice/auth'
 
-function Reviews({ setActive, comments }) {
-    const user = JSON.parse(localStorage.getItem('user') || null)
+function Reviews({ setActive, comments, id }) {
+    const { access } = useAuthSelector()
+
+    const initialValue = { name: '' }
 
     const [reviews, setReviews] = useState('')
+
+    const [comment, { error: commentError, isError: isCommentError }] =
+        usePostCommentsMutation()
+
+    // цепляет данные из input
+    const handleChange = ({ target }) => {
+        setReviews((prev) => ({
+            ...prev,
+            [target.name]: target.value
+        }))
+    }
+
+    // оставить комментарий
+    const handleAddPost = async () => {
+        try {
+            await comment(id, reviews).unwrap()
+            setReviews(initialValue)
+        } catch {
+            if (isCommentError) {
+                toast.error(commentError.data.detail)
+            }
+        }
+    }
 
     return (
         <div className={s.adv}>
@@ -26,17 +54,16 @@ function Reviews({ setActive, comments }) {
                         className={s.inputReviews}
                         placeholder="Введите отзыв"
                         type="text"
-                        onChange={(e) => {
-                            setReviews(e.target.value)
-                        }}
+                        onChange={handleChange}
                     ></textarea>
-                    <Button
-                        color={!user ? 'gray' : 'btnReview'}
-                        disabled={Boolean(!user)}
-                    >
-                        {'Опубликовать'}
-                    </Button>
                 </form>
+                <Button
+                    color={!access ? 'gray' : 'btnReview'}
+                    disabled={Boolean(!access)}
+                    onClick={handleAddPost}
+                >
+                    {'Опубликовать'}
+                </Button>
 
                 <div className={s.comments}>
                     {comments &&

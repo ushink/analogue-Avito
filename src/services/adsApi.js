@@ -49,6 +49,16 @@ export const adsApi = createApi({
                           { type: 'comments', id: 'LIST' }
                       ]
                     : [{ type: 'comments', id: 'LIST' }]
+        }),
+
+        // создать комментарий к обьявлению
+        postComments: build.mutation({
+            query: (id, body) => ({
+                url: `/ads/${id}/comments`,
+                method: 'POST',
+                body
+            }),
+            invalidatesTags: [{ type: 'comments', id: 'LIST' }]
         })
     })
 })
@@ -57,5 +67,6 @@ export const {
     useGetAdsAllQuery,
     useGetFavAdsQuery,
     useGetAdsIdQuery,
-    useGetCommentsQuery
+    useGetCommentsQuery,
+    usePostCommentsMutation
 } = adsApi
