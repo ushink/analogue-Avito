@@ -9,25 +9,25 @@ import { useAuthSelector } from '../../../store/slice/auth'
 function Reviews({ setActive, comments, id }) {
     const { access } = useAuthSelector()
 
-    const initialValue = { name: '' }
+    const initialValue = ''
 
-    const [reviews, setReviews] = useState('')
+    const [reviews, setReviews] = useState(initialValue)
 
     const [comment, { error: commentError, isError: isCommentError }] =
         usePostCommentsMutation()
 
     // цепляет данные из input
     const handleChange = ({ target }) => {
-        setReviews((prev) => ({
-            ...prev,
-            [target.name]: target.value
-        }))
+        setReviews(target.value)
     }
 
     // оставить комментарий
     const handleAddPost = async () => {
+        console.log(reviews)
+        console.log(id)
+
         try {
-            await comment(id, reviews).unwrap()
+            await comment({ id, text: reviews }).unwrap()
             setReviews(initialValue)
         } catch {
             if (isCommentError) {

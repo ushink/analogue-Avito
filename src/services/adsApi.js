@@ -6,7 +6,7 @@ export const adsApi = createApi({
     tagTypes: ['ads', 'favAds', 'comments'],
 
     baseQuery: baseQueryReauth,
-    
+
     endpoints: (build) => ({
         // получить все объявления
         getAdsAll: build.query({
@@ -54,10 +54,13 @@ export const adsApi = createApi({
 
         // создать комментарий к обьявлению
         postComments: build.mutation({
-            query: (id, body) => ({
+            query: ({ id, text }) => ({
                 url: `/ads/${id}/comments`,
                 method: 'POST',
-                body
+                body: JSON.stringify({
+                    text
+                }),
+                headers: { 'content-type': 'application/json' }
             }),
             invalidatesTags: [{ type: 'comments', id: 'LIST' }]
         })
