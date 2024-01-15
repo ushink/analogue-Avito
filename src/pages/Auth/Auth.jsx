@@ -90,7 +90,6 @@ function Auth() {
                     refresh: loginData.refresh_token
                 })
             )
-            localStorage.setItem('user', true)
             navigate('/profile')
         }
         if (isRegisterSuccess) {
@@ -101,7 +100,6 @@ function Auth() {
                     refresh: registerData.refresh_token
                 })
             )
-            localStorage.setItem('user', true)
             navigate('/profile')
         }
     }, [isLoginSuccess, isRegisterSuccess])

@@ -82,7 +82,7 @@ export const useAuthSelector = () => {
         phone,
         role,
         surname
-    } = useSelector((store) => store.auth)
+    } = useSelector((store) => store.authorization)
     return {
         refresh,
         access,

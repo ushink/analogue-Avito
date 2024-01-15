@@ -15,7 +15,6 @@ function ProfileInput({ formInfo }) {
     const handelLogout = () => {
         dispatch(logout())
         toast.success('Успешно')
-        localStorage.clear()
         setIsButtonActiv(true)
         navigate('/login')
     }
