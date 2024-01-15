@@ -25,16 +25,38 @@ function ProfileInput({ formInfo }) {
                 <button className={s.btnChange}>Заменить</button>
             </div>
             <form className={s.form} action="#">
-                {formInfo.map((el) => (
-                    <div className={s.item} key={el.id}>
-                        <label className={s.label}>{el.label}</label>
-                        <input
-                            className={el.type === 'tel' ? s.inputTel : s.input}
-                            type={el.type}
-                            placeholder={el.placeholder}
-                        />
-                    </div>
-                ))}
+                <div className={s.item}>
+                    <label className={s.label}>Имя</label>
+                    <input
+                        className={s.input}
+                        type="text"
+                        placeholder={formInfo?.name}
+                    />
+                </div>
+                <div className={s.item}>
+                    <label className={s.label}>Фамилия</label>
+                    <input
+                        className={s.input}
+                        type="text"
+                        placeholder={formInfo?.surname}
+                    />
+                </div>
+                <div className={s.item}>
+                    <label className={s.label}>Город</label>
+                    <input
+                        className={s.input}
+                        type="text"
+                        placeholder={formInfo?.city}
+                    />
+                </div>
+                <div className={s.item}>
+                    <label className={s.label}>Телефон</label>
+                    <input
+                        className={s.inputTel}
+                        type="tel"
+                        placeholder={formInfo?.phone}
+                    />
+                </div>
                 <Button color={'btnSave'} disabled={isButtonActiv}>
                     {'Сохранить'}
                 </Button>

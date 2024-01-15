@@ -1,29 +1,41 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import ProfileInput from '../../components/ProfileInput/ProfileInput'
 import Header from '../../components/common/Header/Header'
 import Menu from '../../components/common/Menu/Menu'
 import ProductList from '../../components/product/ProductList/ProductList'
-import { formInfo } from '../../mock/formInfo'
 import { productsUser } from '../../mock/products'
-import { useGetUserQuery, useGetUsersAllQuery } from '../../services/userApi'
+import { useGetUsersAllQuery } from '../../services/userApi'
 import s from './Profile.module.css'
 import { useEffect } from 'react'
-import { setUser, setUsersAll } from '../../store/slice/user'
+import { setUsersAll } from '../../store/slice/user'
+import { useAuthSelector } from '../../store/slice/auth'
 
 function Profile() {
     const dispatch = useDispatch()
 
-    const { data: usersAllData = [] } = useGetUsersAllQuery()
-    const { data: userData } = useGetUserQuery()
-    console.log(userData)
+    const { data: usersAllData } = useGetUsersAllQuery()
+
+    const { email } = useAuthSelector()
+
+    const userData = usersAllData?.filter((el) => el.email === email)
+    console.log('userData', userData)
 
     useEffect(() => {
         dispatch(setUsersAll(usersAllData))
-        dispatch(setUser(userData))
+        // dispatch(
+        //     setAuth({
+        //         name: userData?.[0]?.name,
+        //         email: userData?.[0]?.email,
+        //         id: userData?.[0]?.id,
+        //         city: userData?.[0]?.city,
+        //         avatar: userData?.[0]?.avatar,
+        //         sells_from: userData?.[0]?.sells_from,
+        //         phone: userData?.[0]?.phone,
+        //         role: userData?.[0]?.role,
+        //         surname: userData?.[0]?.surname
+        //     })
+        // )
     }, [])
-
-    const { usersAll } = useSelector((store) => store.user)
-    console.log('select', usersAll)
 
     return (
         <div className={s.wrapper}>
@@ -32,12 +44,14 @@ function Profile() {
                 <main className={s.main}>
                     <Menu />
                     <div className={s.content}>
-                        <h2 className={s.title}>Здравствуйте, Антон!</h2>
+                        <h2 className={s.title}>
+                            Здравствуйте, {userData?.[0]?.name}!
+                        </h2>
                         <div className={s.profile}>
                             <h3 className={s.titleProfile}>
                                 Настройки профиля
                             </h3>
-                            <ProfileInput formInfo={formInfo} />
+                            <ProfileInput formInfo={userData?.[0]} />
                         </div>
                         <h3 className={s.titleProfile}>Мои товары</h3>
                         <ProductList
