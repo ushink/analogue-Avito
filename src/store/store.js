@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './slice/auth'
-import userReducer from './slice/user'
+// import userReducer from './slice/user'
 import { authApi } from '../services/authApi'
 import { adsApi } from '../services/adsApi'
 import { userApi } from '../services/userApi'
@@ -8,7 +8,7 @@ import { userApi } from '../services/userApi'
 const store = configureStore({
     reducer: {
         authorization: authReducer,
-        user: userReducer,
+        // user: userReducer,
         [authApi.reducerPath]: authApi.reducer,
         [adsApi.reducerPath]: adsApi.reducer,
         [userApi.reducerPath]: userApi.reducer

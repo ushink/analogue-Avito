@@ -1,11 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi } from '@reduxjs/toolkit/query/react'
+import baseQueryReauth from './baseQueryReauth'
 
 export const adsApi = createApi({
     reducerPath: 'ads',
     tagTypes: ['ads', 'favAds', 'comments'],
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8090/'
-    }),
+
+    baseQuery: baseQueryReauth,
+    
     endpoints: (build) => ({
         // получить все объявления
         getAdsAll: build.query({
