@@ -1,11 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi } from '@reduxjs/toolkit/query/react'
+import baseQueryReauth from './baseQueryReauth'
 
 export const adsApi = createApi({
     reducerPath: 'ads',
     tagTypes: ['ads', 'favAds', 'comments'],
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8090/'
-    }),
+
+    baseQuery: baseQueryReauth,
+
     endpoints: (build) => ({
         // получить все объявления
         getAdsAll: build.query({
@@ -49,6 +50,19 @@ export const adsApi = createApi({
                           { type: 'comments', id: 'LIST' }
                       ]
                     : [{ type: 'comments', id: 'LIST' }]
+        }),
+
+        // создать комментарий к обьявлению
+        postComments: build.mutation({
+            query: ({ id, text }) => ({
+                url: `/ads/${id}/comments`,
+                method: 'POST',
+                body: JSON.stringify({
+                    text
+                }),
+                headers: { 'content-type': 'application/json' }
+            }),
+            invalidatesTags: [{ type: 'comments', id: 'LIST' }]
         })
     })
 })
@@ -57,5 +71,6 @@ export const {
     useGetAdsAllQuery,
     useGetFavAdsQuery,
     useGetAdsIdQuery,
-    useGetCommentsQuery
+    useGetCommentsQuery,
+    usePostCommentsMutation
 } = adsApi

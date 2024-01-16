@@ -88,7 +88,11 @@ function Adv() {
                 </main>
             </div>
             <Modal active={modalActive} setActive={setModalActive}>
-                <Reviews setActive={setModalActive} />
+                <Reviews
+                    setActive={setModalActive}
+                    comments={commentsData}
+                    id={id}
+                />
             </Modal>
         </div>
     )

@@ -1,12 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi } from '@reduxjs/toolkit/query/react'
+import baseQueryReauth from './baseQueryReauth'
 
 export const authApi = createApi({
     reducerPath: 'auth',
     tagTypes: ['Auth'],
 
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8090/'
-    }),
+    baseQuery: baseQueryReauth,
 
     endpoints: (build) => ({
         login: build.mutation({

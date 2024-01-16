@@ -87,10 +87,10 @@ function Auth() {
             dispatch(
                 setAuth({
                     access: loginData.access_token,
-                    refresh: loginData.refresh_token
+                    refresh: loginData.refresh_token,
+                    email
                 })
             )
-            localStorage.setItem('user', true)
             navigate('/profile')
         }
         if (isRegisterSuccess) {
@@ -98,10 +98,10 @@ function Auth() {
             dispatch(
                 setAuth({
                     access: registerData.access_token,
-                    refresh: registerData.refresh_token
+                    refresh: registerData.refresh_token,
+                    email
                 })
             )
-            localStorage.setItem('user', true)
             navigate('/profile')
         }
     }, [isLoginSuccess, isRegisterSuccess])
