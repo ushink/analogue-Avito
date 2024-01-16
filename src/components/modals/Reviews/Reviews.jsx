@@ -23,9 +23,6 @@ function Reviews({ setActive, comments, id }) {
 
     // оставить комментарий
     const handleAddPost = async () => {
-        console.log(reviews)
-        console.log(id)
-
         try {
             await comment({ id, text: reviews }).unwrap()
             setReviews(initialValue)
