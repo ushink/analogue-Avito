@@ -30,8 +30,25 @@ export const userApi = createApi({
                           { type: 'user', id: 'LIST' }
                       ]
                     : [{ type: 'user', id: 'LIST' }]
+        }),
+
+        // добавить аватар пользователя
+        postAvatar: build.mutation({
+            query: (data) => {
+                const formData = new FormData()
+                if (data) {
+                    formData.append('file', data)
+                }
+                return {
+                    url: '/user/avatar',
+                    method: 'POST',
+                    body: formData
+                }
+            },
+            invalidatesTags: [{ type: 'user', id: 'LIST' }]
         })
     })
 })
 
-export const { useGetUserQuery, useGetUsersAllQuery } = userApi
+export const { useGetUserQuery, useGetUsersAllQuery, usePostAvatarMutation } =
+    userApi

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { logout } from '../../store/slice/auth'
 import { toast } from 'react-toastify'
+import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 
 function ProfileInput({ formInfo }) {
     const navigate = useNavigate()
@@ -20,10 +21,7 @@ function ProfileInput({ formInfo }) {
     }
     return (
         <div className={s.box}>
-            <div className={s.avatar}>
-                <div className={s.foto}></div>
-                <button className={s.btnChange}>Заменить</button>
-            </div>
+            <ProfileAvatar formInfo={formInfo} />
             <form className={s.form} action="#">
                 <div className={s.item}>
                     <label className={s.label}>Имя</label>
