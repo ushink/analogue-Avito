@@ -40,6 +40,40 @@ export const adsApi = createApi({
             query: (id) => `/ads/${id}`
         }),
 
+        // создать обьявление без изображений
+        postTextAds: build.mutation({
+            query: ({ title, description, price }) => ({
+                url: `/adstext`,
+                method: 'POST',
+                body: JSON.stringify({
+                    title,
+                    description,
+                    price
+                }),
+                headers: { 'content-type': 'application/json' }
+            }),
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
+        // добавить изображения в объявление
+        postImgAds: build.mutation({
+            query: (data, id) => {
+                const formData = new FormData()
+
+                if (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        formData.append(`file${i + 1}`, data[i])
+                    }
+                }
+                return {
+                    url: `/ads/${id}/image`,
+                    method: 'POST',
+                    body: formData
+                }
+            },
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
         // получить комментарии по id
         getComments: build.query({
             query: (id) => `/ads/${id}/comments`,
@@ -72,5 +106,7 @@ export const {
     useGetFavAdsQuery,
     useGetAdsIdQuery,
     useGetCommentsQuery,
-    usePostCommentsMutation
+    usePostCommentsMutation,
+    usePostTextAdsMutation,
+    usePostImgAdsMutation
 } = adsApi

@@ -29,3 +29,11 @@
     line-height: 1;
     margin-right: 10px;
 }
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn:active {
+    background: rgba(255, 255, 255, 0.3);
+}

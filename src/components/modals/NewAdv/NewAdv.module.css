@@ -136,3 +136,9 @@
 .img:active {
     background-color: #eceaea;
 }
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
