@@ -10,7 +10,7 @@ import { useGetAdsAllQuery } from '../../services/adsApi'
 function SellerProfile() {
     const { data: adsAllData = [] } = useGetAdsAllQuery()
     const { data: usersAllData } = useGetUsersAllQuery()
-    
+
     const { id } = useParams()
     const num = Number(id - 1)
 
@@ -50,7 +50,9 @@ function SellerProfile() {
                                         })}
                                     </p>
                                 </div>
-                                <ShowTelephone />
+                                <ShowTelephone
+                                    data={usersAllData?.[num]?.phone}
+                                />
                             </div>
                         </div>
                         <h3 className={s.subtitle}>Товары продавца</h3>

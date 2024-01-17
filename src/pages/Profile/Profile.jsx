@@ -2,12 +2,13 @@ import ProfileInput from '../../components/ProfileInput/ProfileInput'
 import Header from '../../components/common/Header/Header'
 import Menu from '../../components/common/Menu/Menu'
 import ProductList from '../../components/product/ProductList/ProductList'
-import { productsUser } from '../../mock/products'
 import { useGetUsersAllQuery } from '../../services/userApi'
 import s from './Profile.module.css'
 import { useAuthSelector } from '../../store/slice/auth'
+import { useGetFavAdsQuery } from '../../services/adsApi'
 
 function Profile() {
+    const { data: adsUserData } = useGetFavAdsQuery()
     const { data: usersAllData } = useGetUsersAllQuery()
 
     const { email } = useAuthSelector()
@@ -31,10 +32,7 @@ function Profile() {
                             <ProfileInput formInfo={userData?.[0]} />
                         </div>
                         <h3 className={s.titleProfile}>Мои товары</h3>
-                        <ProductList
-                            products={productsUser}
-                            isProfilePage={true}
-                        />
+                        <ProductList ads={adsUserData} isProfilePage={true} />
                     </div>
                 </main>
             </div>

@@ -57,7 +57,7 @@ export const adsApi = createApi({
 
         // добавить изображения в объявление
         postImgAds: build.mutation({
-            query: (data, id) => {
+            query: ({ data, id }) => {
                 const formData = new FormData()
 
                 if (data) {
@@ -69,6 +69,16 @@ export const adsApi = createApi({
                     url: `/ads/${id}/image`,
                     method: 'POST',
                     body: formData
+                }
+            },
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
+        deleteAds: build.mutation({
+            query(id) {
+                return {
+                    url: `/ads/${id}`,
+                    method: 'DELETE'
                 }
             },
             invalidatesTags: [{ type: 'ads', id: 'LIST' }]
@@ -108,5 +118,6 @@ export const {
     useGetCommentsQuery,
     usePostCommentsMutation,
     usePostTextAdsMutation,
-    usePostImgAdsMutation
+    usePostImgAdsMutation,
+    useDeleteAdsMutation
 } = adsApi
