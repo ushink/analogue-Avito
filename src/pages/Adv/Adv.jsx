@@ -61,7 +61,7 @@ function Adv() {
                                 <h2 className={s.price}>
                                     {adsIdData?.price} ₽
                                 </h2>
-                                {adsIdData?.user?.phone && (
+                                {adsIdData?.user?.phone && !isProfileBtn && (
                                     <ShowTelephone
                                         phoneData={adsIdData?.user?.phone}
                                     />

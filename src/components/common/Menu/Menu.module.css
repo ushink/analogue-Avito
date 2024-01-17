@@ -70,3 +70,13 @@
     width: 241px;
     height: 50px;
 }
+
+.btn:hover,
+.btnSearch:hover {
+    background: #0080c1;
+}
+
+.btn:active,
+.btnSearch:active {
+    background-color: #0079b5;
+}

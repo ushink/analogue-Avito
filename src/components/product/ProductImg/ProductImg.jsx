@@ -13,7 +13,7 @@ function ProductImg({ data }) {
                 ) : (
                     <img
                         className={s.noPhoto}
-                        src="../img/noPhoto.png"
+                        src="../../img/noPhoto.png"
                         alt="no img"
                     />
                 )}
