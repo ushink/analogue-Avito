@@ -25,13 +25,19 @@ function SellerProfile() {
                     <div className={s.content}>
                         <h2 className={s.title}>Профиль продавца</h2>
                         <div className={s.profile}>
-                            <div>
+                            {usersAllData?.[num]?.avatar ? (
                                 <img
                                     className={s.foto}
                                     src={`http://localhost:8090/${usersAllData?.[num]?.avatar}`}
                                     alt="img"
                                 />
-                            </div>
+                            ) : (
+                                <img
+                                    className={s.foto}
+                                    src="../img/defaultAvatar.jpg"
+                                    alt="default img"
+                                />
+                            )}
                             <div className={s.form} action="#">
                                 <div className={s.boxInfo}>
                                     <h4 className={s.name}>
