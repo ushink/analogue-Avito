@@ -9,11 +9,16 @@ function Seller({ data }) {
 
     return (
         <div className={s.seller}>
-            <img
-                className={s.photo}
-                src={`http://localhost:8090/${data?.user?.avatar}`}
-                alt="img"
-            />
+            {data?.user?.avatar ? (
+                <img
+                    className={s.photo}
+                    src={`http://localhost:8090/${data?.user?.avatar}`}
+                    alt="img"
+                />
+            ) : (
+                <img className={s.photo} src="../img/defaultAvatar.jpg" alt="img" />
+            )}
+
             {!advPage ? (
                 <div className={s.personal}>
                     <Link to={`/seller/${data?.user?.id}`}>
