@@ -51,7 +51,7 @@ function SellerProfile() {
                                     </p>
                                 </div>
                                 <ShowTelephone
-                                    data={usersAllData?.[num]?.phone}
+                                    phoneData={usersAllData?.[num]?.phone}
                                 />
                             </div>
                         </div>

@@ -1,11 +1,11 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import s from './Seller.module.css'
-import { ADV_ROUTE, PROFILE_ROUTE } from '../../../utils/constants'
+import { PROFILE_ROUTE } from '../../../utils/constants'
+import { useAuthSelector } from '../../../store/slice/auth'
 
 function Seller({ data }) {
-    const { pathname } = useLocation()
-
-    const advPage = pathname.replace(`${data?.id}`, '') === ADV_ROUTE.replace(`:id`, '')
+    const { email } = useAuthSelector()
+    const advPage = email === data?.user?.email
 
     return (
         <div className={s.seller}>
@@ -14,7 +14,7 @@ function Seller({ data }) {
                 src={`http://localhost:8090/${data?.user?.avatar}`}
                 alt="img"
             />
-            {advPage ? (
+            {!advPage ? (
                 <div className={s.personal}>
                     <Link to={`/seller/${data?.user?.id}`}>
                         <h3 className={s.name}>{data?.user?.name}</h3>
