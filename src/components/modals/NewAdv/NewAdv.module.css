@@ -118,27 +118,3 @@
     line-height: 150%;
 }
 
-.boxImg {
-    display: flex;
-    column-gap: 10px;
-}
-
-.img {
-    cursor: pointer;
-    width: 90px;
-    height: 90px;
-}
-
-.img:hover {
-    border: 2px solid #009ee4;
-}
-
-.img:active {
-    background-color: #eceaea;
-}
-
-.hidden {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-}

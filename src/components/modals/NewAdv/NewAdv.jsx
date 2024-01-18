@@ -1,16 +1,14 @@
-import { pictures } from '../../../mock/pictures'
 import s from './NewAdv.module.css'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Button from '../../UI/Button/Button'
 import {
     usePostImgAdsMutation,
     usePostTextAdsMutation
 } from '../../../services/adsApi'
 import { toast } from 'react-toastify'
+import ChoiceFile from '../../ChoiceFile/ChoiceFile'
 
 function NewAdv({ setActive }) {
-    const fileImage = useRef(null)
-
     const [
         textAds,
         { isSuccess: isTextAdsSuccess, error: textError, isError: isTextError }
@@ -40,18 +38,6 @@ function NewAdv({ setActive }) {
                 }
             })
         setActive(false)
-    }
-
-    const handelChange = (event) => {
-        if (event.length === 1) {
-            setImage(event.target.files[0])
-        } else {
-            setImage(event.target.files)
-        }
-    }
-
-    const handelPick = () => {
-        fileImage.current.click()
     }
 
     useEffect(() => {
@@ -103,32 +89,7 @@ function NewAdv({ setActive }) {
                         }}
                     ></textarea>
                 </div>
-                <div className={s.item}>
-                    <input
-                        className={s.hidden}
-                        id="imgAds"
-                        type="file"
-                        multiple
-                        accept="image/*,.png,.jpg,.gif,.web,"
-                        ref={fileImage}
-                        onChange={handelChange}
-                    />
-                    <label htmlFor="imgAds" className={s.label}>
-                        Фотографии товара{' '}
-                        <span className={s.select}>не более 5 фотографий</span>
-                    </label>
-                    <div className={s.boxImg}>
-                        {pictures.map((el) => (
-                            <img
-                                className={s.img}
-                                key={el.id}
-                                src="../../img/card.svg"
-                                alt="card"
-                                onClick={handelPick}
-                            />
-                        ))}
-                    </div>
-                </div>
+                <ChoiceFile image={image} setImage={setImage} />
                 <div className={s.item}>
                     <label className={s.label}>Цена</label>
                     <div className={s.price}>
