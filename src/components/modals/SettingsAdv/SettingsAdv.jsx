@@ -1,7 +1,7 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-unused-vars */
-import { pictures } from '../../../mock/pictures'
 import s from './SettingsAdv.module.css'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Button from '../../UI/Button/Button'
 import {
     useDeleteFileMutation,
@@ -13,10 +13,8 @@ import { toast } from 'react-toastify'
 import ChoiceFile from '../../ChoiceFile/ChoiceFile'
 
 function SettingsAdv({ setActive, data }) {
-    const navigate = useNavigate()
     const { id } = useParams()
 
-    // console.log(data)
     const [updateAds] = useUpdateAdsMutation()
     const [deleteFile] = useDeleteFileMutation()
     const [imageAds] = usePostImgAdsMutation()
@@ -31,6 +29,12 @@ function SettingsAdv({ setActive, data }) {
     const handleUpdateAds = async (event) => {
         event.preventDefault()
         setIsButtonActiv(true)
+
+        if (!title || !description || !price) {
+            toast.error('Заполните все поля')
+            return
+        }
+
         try {
             await updateAds({ title, description, price, id })
                 .unwrap()
@@ -38,18 +42,27 @@ function SettingsAdv({ setActive, data }) {
                     console.log(response)
                     if (image) {
                         for (let i = 0; i < image.length; i++) {
-                            // отправляем картинку
                             imageAds({
                                 data: image[i],
                                 id: response.id
                             }).unwrap()
                         }
-                    } 
+                    }
                 })
-            // setActive(false)
+            setActive(false)
             // location.reload(true)
         } catch {
             toast.error('Error')
+        }
+    }
+
+    // удалить изображение
+    const handleDeleteFile = async (url) => {
+        console.log(id)
+        try {
+            await deleteFile({ id: id, file_url: url })
+        } catch (error) {
+            toast.error('error')
         }
     }
 
@@ -89,7 +102,7 @@ function SettingsAdv({ setActive, data }) {
                         value={description}
                     ></textarea>
                 </div>
-                {data?.images.length !== 0 ? (
+                {data?.images?.length !== 0 ? (
                     <div className={s.item}>
                         <label className={s.label}>
                             Фотографии товара{' '}
@@ -99,13 +112,23 @@ function SettingsAdv({ setActive, data }) {
                         </label>
                         <div className={s.boxImg}>
                             <>
-                                {data?.images.map((el, i) => (
-                                    <img
-                                        className={s.img}
-                                        key={el.id}
-                                        src={`http://localhost:8090/${data?.images?.[i]?.url}`}
-                                        alt="card"
-                                    />
+                                {data?.images?.map((el) => (
+                                    <div key={el.id}>
+                                        <img
+                                            className={s.img}
+                                            src={`http://localhost:8090/${el.url}`}
+                                            alt="card"
+                                        />
+                                        <button
+                                            className="btn"
+                                            onClick={() => {
+                                                handleDeleteFile(el.url)
+                                                
+                                            }}
+                                        >
+                                            x
+                                        </button>
+                                    </div>
                                 ))}
                             </>
                         </div>
