@@ -59,11 +59,8 @@ export const adsApi = createApi({
         postImgAds: build.mutation({
             query: ({ data, id }) => {
                 const formData = new FormData()
-
                 if (data) {
-                    for (let i = 0; i < data.length; i++) {
-                        formData.append(`file${i + 1}`, data[i])
-                    }
+                    formData.append('file', data)
                 }
                 return {
                     url: `/ads/${id}/image`,

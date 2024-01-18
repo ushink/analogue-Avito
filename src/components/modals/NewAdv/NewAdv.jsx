@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { pictures } from '../../../mock/pictures'
 import s from './NewAdv.module.css'
 import { useState, useRef, useEffect } from 'react'
@@ -12,8 +11,10 @@ import { toast } from 'react-toastify'
 function NewAdv({ setActive }) {
     const fileImage = useRef(null)
 
-    const [textAds, { error: textError, isError: isTextError }] =
-        usePostTextAdsMutation()
+    const [
+        textAds,
+        { isSuccess: isTextAdsSuccess, error: textError, isError: isTextError }
+    ] = usePostTextAdsMutation()
     const [imageAds, { error: imageError, isError: isImageError }] =
         usePostImgAdsMutation()
 
@@ -25,23 +26,20 @@ function NewAdv({ setActive }) {
 
     // создать объявление
     const handleAddAds = async (event) => {
-        console.log(image)
         event.preventDefault()
         setIsButtonActiv(true)
 
-        // отправляем текст
         await textAds({ title, description, price })
             .unwrap()
             .then((response) => {
                 if (image) {
                     for (let i = 0; i < image.length; i++) {
                         // отправляем картинку
-                        imageAds({ image, id: response.id }).unwrap()
+                        imageAds({ data: image[i], id: response.id }).unwrap()
                     }
                 }
             })
-
-        // location.reload(true)
+        setActive(false)
     }
 
     const handelChange = (event) => {
@@ -50,6 +48,10 @@ function NewAdv({ setActive }) {
         } else {
             setImage(event.target.files)
         }
+    }
+
+    const handelPick = () => {
+        fileImage.current.click()
     }
 
     useEffect(() => {
@@ -61,9 +63,11 @@ function NewAdv({ setActive }) {
         }
     }, [isTextError, isImageError])
 
-    const handelPick = () => {
-        fileImage.current.click()
-    }
+    useEffect(() => {
+        if (isTextAdsSuccess) {
+            toast.success('Ваше объявление добавлено')
+        }
+    }, [isTextAdsSuccess])
 
     return (
         <div className={s.adv}>
