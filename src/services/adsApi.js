@@ -71,6 +71,19 @@ export const adsApi = createApi({
             invalidatesTags: [{ type: 'ads', id: 'LIST' }]
         }),
 
+        // удалить изображение
+        deleteFile: build.mutation({
+            query({ id, file_url }) {
+                return {
+                    url: `/ads/${id}/image`,
+                    params: `file_url=${file_url}`,
+                    method: 'DELETE'
+                }
+            },
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
+        // удалить объявление
         deleteAds: build.mutation({
             query(id) {
                 return {
@@ -140,6 +153,7 @@ export const {
     usePostCommentsMutation,
     usePostTextAdsMutation,
     usePostImgAdsMutation,
+    useDeleteFileMutation,
     useDeleteAdsMutation,
     useUpdateAdsMutation
 } = adsApi
