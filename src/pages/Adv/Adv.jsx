@@ -66,7 +66,7 @@ function Adv() {
                                         phoneData={adsIdData?.user?.phone}
                                     />
                                 )}
-                                {isProfileBtn && <ProfileButton />}
+                                {isProfileBtn && <ProfileButton data={adsIdData}/>}
                                 <Seller data={adsIdData} />
                             </div>
                         </div>

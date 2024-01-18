@@ -5,7 +5,7 @@ import SettingsAdv from '../modals/SettingsAdv/SettingsAdv'
 import { useDeleteAdsMutation } from '../../services/adsApi'
 import { useNavigate, useParams } from 'react-router'
 
-function ProfileButton() {
+function ProfileButton({data}) {
     const navigate = useNavigate()
 
     const { id } = useParams()
@@ -29,7 +29,7 @@ function ProfileButton() {
             </Button>
 
             <Modal active={modalActive} setActive={setModalActive}>
-                <SettingsAdv setActive={setModalActive} />
+                <SettingsAdv setActive={setModalActive} data={data}/>
             </Modal>
         </>
     )

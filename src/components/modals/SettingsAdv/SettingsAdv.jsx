@@ -3,15 +3,31 @@ import { pictures } from '../../../mock/pictures'
 import s from './SettingsAdv.module.css'
 import { useState } from 'react'
 import Button from '../../UI/Button/Button'
+import { useUpdateAdsMutation } from '../../../services/adsApi'
+import { useParams } from 'react-router'
+import { toast } from 'react-toastify'
 
-function NewAdv({ setActive }) {
-    const [title, setTitle] = useState(
-        'Ракетка для большого тенниса Triumph Pro STС Б/У'
-    )
-    const [description, setDescription] = useState(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    )
-    const [price, setPrice] = useState(2200)
+function SettingsAdv({ setActive, data }) {
+    const { id } = useParams()
+
+    const [updateAds] = useUpdateAdsMutation()
+
+    const [isButtonActiv, setIsButtonActiv] = useState(false)
+    const [title, setTitle] = useState(data?.title)
+    const [description, setDescription] = useState(data?.description)
+    const [price, setPrice] = useState(data?.price)
+
+    const handleUpdateAds = async (event) => {
+        event.preventDefault()
+        setIsButtonActiv(true)
+
+        try {
+            await updateAds({ title, description, price, id }).unwrap()
+            // location.reload(true)
+        } catch {
+            toast.error('Error')
+        }
+    }
 
     return (
         <div className={s.adv}>
@@ -24,8 +40,8 @@ function NewAdv({ setActive }) {
                     }}
                 ></div>
             </div>
-            <div className={s.body}>
-                <form className={s.item}>
+            <form className={s.body} onSubmit={handleUpdateAds}>
+                <div className={s.item}>
                     <label className={s.label}>Название</label>
                     <input
                         placeholder="Введите название"
@@ -36,8 +52,8 @@ function NewAdv({ setActive }) {
                         }}
                         value={title}
                     />
-                </form>
-                <form className={s.item}>
+                </div>
+                <div className={s.item}>
                     <label className={s.label}>Описание</label>
                     <textarea
                         className={s.description}
@@ -48,24 +64,24 @@ function NewAdv({ setActive }) {
                         }}
                         value={description}
                     ></textarea>
-                </form>
+                </div>
                 <div className={s.item}>
                     <label className={s.label}>
                         Фотографии товара{' '}
                         <span className={s.select}>не более 5 фотографий</span>
                     </label>
                     <div className={s.boxImg}>
-                        {pictures.map((el) => (
+                        {data?.images.map((el) => (
                             <img
                                 className={s.img}
                                 key={el.id}
-                                src="../../img/card.svg"
+                                src={`http://localhost:8090/${data?.images?.url}`}
                                 alt="card"
                             />
                         ))}
                     </div>
                 </div>
-                <form className={s.item}>
+                <div className={s.item}>
                     <label className={s.label}>Цена</label>
                     <div className={s.price}>
                         <input
@@ -78,11 +94,17 @@ function NewAdv({ setActive }) {
                         />
                         <span className={s.currency}>₽</span>
                     </div>
-                </form>
-                <Button color={'gray'}>{'Сохранить'}</Button>
-            </div>
+                    <Button
+                        color={'gray'}
+                        type={'submit'}
+                        disabled={isButtonActiv}
+                    >
+                        {'Сохранить'}
+                    </Button>
+                </div>
+            </form>
         </div>
     )
 }
 
-export default NewAdv
+export default SettingsAdv

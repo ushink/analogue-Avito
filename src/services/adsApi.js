@@ -81,6 +81,30 @@ export const adsApi = createApi({
             invalidatesTags: [{ type: 'ads', id: 'LIST' }]
         }),
 
+        // изменить объявление
+        updateAds: build.mutation({
+            query: ({ id, ...patch }) => ({
+                url: `/ads/${id}`,
+                method: 'PATCH',
+                body: patch
+            }),
+            async onQueryStarted(
+                { id, ...patch },
+                { dispatch, queryFulfilled }
+            ) {
+                const patchResult = dispatch(
+                    adsApi.util.updateQueryData('getUser', id, (draft) => {
+                        Object.assign(draft, patch)
+                    })
+                )
+                try {
+                    await queryFulfilled
+                } catch {
+                    patchResult.undo()
+                }
+            }
+        }),
+
         // получить комментарии по id
         getComments: build.query({
             query: (id) => `/ads/${id}/comments`,
@@ -116,5 +140,6 @@ export const {
     usePostCommentsMutation,
     usePostTextAdsMutation,
     usePostImgAdsMutation,
-    useDeleteAdsMutation
+    useDeleteAdsMutation,
+    useUpdateAdsMutation
 } = adsApi
