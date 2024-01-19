@@ -25,6 +25,10 @@ function NewAdv({ setActive }) {
     // создать объявление
     const handleAddAds = async (event) => {
         event.preventDefault()
+        if (!title || !description || !price) {
+            toast.error('Заполните все поля')
+            return
+        }
         setIsButtonActiv(true)
         await textAds({ title, description, price })
             .unwrap()
@@ -54,6 +58,7 @@ function NewAdv({ setActive }) {
             setTitle(null)
             setDescription(null)
             setPrice(null)
+            location.reload(true)
         }
     }, [isTextAdsSuccess])
 
@@ -109,7 +114,11 @@ function NewAdv({ setActive }) {
                         <span className={s.currency}>₽</span>
                     </div>
                 </div>
-                <Button color={'btnAdv'} type={'submit'} disabled={isButtonActiv}>
+                <Button
+                    color={'btnAdv'}
+                    type={'submit'}
+                    disabled={isButtonActiv}
+                >
                     {'Опубликовать'}
                 </Button>
             </form>

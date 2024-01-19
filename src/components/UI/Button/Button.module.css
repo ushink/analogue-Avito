@@ -26,10 +26,11 @@
     font-size: 16px;
 }
 
-.disabled {
+.disabled,
+.disabled:hover {
     opacity: 0.5;
-    cursor: default;
-    background: #b9b9b9;
+    cursor: not-allowed;
+    background-color: #b9b9b9;
 }
 
 .btnAdv:hover,

@@ -1,5 +1,5 @@
 import s from './SettingsAdv.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '../../UI/Button/Button'
 import {
     usePostImgAdsMutation,
@@ -13,8 +13,8 @@ import DeleteFile from '../../DeleteFile/DeleteFile'
 function SettingsAdv({ setActive, data }) {
     const { id } = useParams()
 
-    const [updateAds] = useUpdateAdsMutation()
-    const [imageAds] = usePostImgAdsMutation()
+    const [updateAds, { isSuccess: isUpdateSuccess }] = useUpdateAdsMutation()
+    const [imageAds, { isSuccess: isImagesSuccess }] = usePostImgAdsMutation()
 
     const [isButtonActiv, setIsButtonActiv] = useState(false)
     const [title, setTitle] = useState(data?.title)
@@ -50,8 +50,13 @@ function SettingsAdv({ setActive, data }) {
             toast.error('Error')
         }
         setActive(false)
-        location.reload(true)
     }
+
+    useEffect(() => {
+        if (isImagesSuccess || isUpdateSuccess) {
+            location.reload(true)
+        }
+    }, [isImagesSuccess, isUpdateSuccess])
 
     return (
         <div className={s.adv}>
