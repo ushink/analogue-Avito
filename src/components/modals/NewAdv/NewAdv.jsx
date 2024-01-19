@@ -26,7 +26,6 @@ function NewAdv({ setActive }) {
     const handleAddAds = async (event) => {
         event.preventDefault()
         setIsButtonActiv(true)
-
         await textAds({ title, description, price })
             .unwrap()
             .then((response) => {
@@ -52,6 +51,9 @@ function NewAdv({ setActive }) {
     useEffect(() => {
         if (isTextAdsSuccess) {
             toast.success('Ваше объявление добавлено')
+            setTitle(null)
+            setDescription(null)
+            setPrice(null)
         }
     }, [isTextAdsSuccess])
 
@@ -73,6 +75,7 @@ function NewAdv({ setActive }) {
                         placeholder="Введите название"
                         className={s.inputTitle}
                         type="text"
+                        value={title}
                         onChange={(e) => {
                             setTitle(e.target.value)
                         }}
@@ -84,6 +87,7 @@ function NewAdv({ setActive }) {
                         className={s.description}
                         placeholder="Введите описание"
                         type="text"
+                        value={description}
                         onChange={(e) => {
                             setDescription(e.target.value)
                         }}
@@ -97,6 +101,7 @@ function NewAdv({ setActive }) {
                             className={s.inputPrice}
                             placeholder="0"
                             type="number"
+                            value={price}
                             onChange={(e) => {
                                 setPrice(e.target.value)
                             }}
@@ -104,7 +109,7 @@ function NewAdv({ setActive }) {
                         <span className={s.currency}>₽</span>
                     </div>
                 </div>
-                <Button color={'gray'} type={'submit'} disabled={isButtonActiv}>
+                <Button color={'btnAdv'} type={'submit'} disabled={isButtonActiv}>
                     {'Опубликовать'}
                 </Button>
             </form>

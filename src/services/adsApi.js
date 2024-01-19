@@ -101,21 +101,6 @@ export const adsApi = createApi({
                 method: 'PATCH',
                 body: patch
             }),
-            async onQueryStarted(
-                { id, ...patch },
-                { dispatch, queryFulfilled }
-            ) {
-                const patchResult = dispatch(
-                    adsApi.util.updateQueryData('getUser', id, (draft) => {
-                        Object.assign(draft, patch)
-                    })
-                )
-                try {
-                    await queryFulfilled
-                } catch {
-                    patchResult.undo()
-                }
-            }
         }),
 
         // получить комментарии по id

@@ -1,22 +1,19 @@
-/* eslint-disable no-debugger */
-/* eslint-disable no-unused-vars */
 import s from './SettingsAdv.module.css'
 import { useState } from 'react'
 import Button from '../../UI/Button/Button'
 import {
-    useDeleteFileMutation,
     usePostImgAdsMutation,
     useUpdateAdsMutation
 } from '../../../services/adsApi'
-import { useNavigate, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { toast } from 'react-toastify'
 import ChoiceFile from '../../ChoiceFile/ChoiceFile'
+import DeleteFile from '../../DeleteFile/DeleteFile'
 
 function SettingsAdv({ setActive, data }) {
     const { id } = useParams()
 
     const [updateAds] = useUpdateAdsMutation()
-    const [deleteFile] = useDeleteFileMutation()
     const [imageAds] = usePostImgAdsMutation()
 
     const [isButtonActiv, setIsButtonActiv] = useState(false)
@@ -28,12 +25,12 @@ function SettingsAdv({ setActive, data }) {
     // обновить объявление
     const handleUpdateAds = async (event) => {
         event.preventDefault()
-        setIsButtonActiv(true)
-
         if (!title || !description || !price) {
             toast.error('Заполните все поля')
             return
         }
+
+        setIsButtonActiv(true)
 
         try {
             await updateAds({ title, description, price, id })
@@ -49,21 +46,11 @@ function SettingsAdv({ setActive, data }) {
                         }
                     }
                 })
-            setActive(false)
-            // location.reload(true)
         } catch {
             toast.error('Error')
         }
-    }
-
-    // удалить изображение
-    const handleDeleteFile = async (url) => {
-        console.log(id)
-        try {
-            await deleteFile({ id: id, file_url: url })
-        } catch (error) {
-            toast.error('error')
-        }
+        setActive(false)
+        location.reload(true)
     }
 
     return (
@@ -103,36 +90,7 @@ function SettingsAdv({ setActive, data }) {
                     ></textarea>
                 </div>
                 {data?.images?.length !== 0 ? (
-                    <div className={s.item}>
-                        <label className={s.label}>
-                            Фотографии товара{' '}
-                            <span className={s.select}>
-                                не более 5 фотографий
-                            </span>
-                        </label>
-                        <div className={s.boxImg}>
-                            <>
-                                {data?.images?.map((el) => (
-                                    <div key={el.id}>
-                                        <img
-                                            className={s.img}
-                                            src={`http://localhost:8090/${el.url}`}
-                                            alt="card"
-                                        />
-                                        <button
-                                            className="btn"
-                                            onClick={() => {
-                                                handleDeleteFile(el.url)
-                                                
-                                            }}
-                                        >
-                                            x
-                                        </button>
-                                    </div>
-                                ))}
-                            </>
-                        </div>
-                    </div>
+                    <DeleteFile data={data} id={id} />
                 ) : (
                     <ChoiceFile image={image} setImage={setImage} />
                 )}
@@ -150,7 +108,11 @@ function SettingsAdv({ setActive, data }) {
                         <span className={s.currency}>₽</span>
                     </div>
                 </div>
-                <Button color={'gray'} type={'submit'} disabled={isButtonActiv}>
+                <Button
+                    color={'btnAdv'}
+                    type={'submit'}
+                    disabled={isButtonActiv}
+                >
                     {'Сохранить'}
                 </Button>
             </form>

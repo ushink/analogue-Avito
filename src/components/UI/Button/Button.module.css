@@ -8,6 +8,7 @@
     letter-spacing: -0.05px;
 }
 
+.btnAdv,
 .btnLogout,
 .btnSave,
 .btnReview,
@@ -27,8 +28,11 @@
 
 .disabled {
     opacity: 0.5;
+    cursor: default;
+    background: #b9b9b9;
 }
 
+.btnAdv:hover,
 .btnLogout:hover,
 .btnSave:hover,
 .btnReview:hover,
@@ -37,6 +41,7 @@
     background: #0080c1;
 }
 
+.btnAdv:active,
 .btnLogout:active,
 .btnSave:active,
 .btnReview:active,
@@ -70,6 +75,7 @@
     width: 181px;
 }
 
+.btnAdv,
 .btnReview {
     width: 181px;
 }

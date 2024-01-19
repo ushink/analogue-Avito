@@ -1,0 +1,38 @@
+.item {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.select {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    margin-left: 10px;
+}
+
+.boxImg {
+    display: flex;
+    column-gap: 10px;
+}
+
+.img {
+    cursor: pointer;
+    width: 90px;
+    height: 90px;
+}
+
+.img:hover {
+    border: 2px solid #009ee4;
+}
+
+.img:active {
+    background-color: #eceaea;
+}
