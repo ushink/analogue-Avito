@@ -15,10 +15,15 @@
     cursor: pointer;
 }
 
+.adsNoImg,
 .adsImg {
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+
+.adsNoImg {
+    border: 2px solid #f0f0f0;
 }
 
 .productImg:hover {

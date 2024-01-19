@@ -40,6 +40,69 @@ export const adsApi = createApi({
             query: (id) => `/ads/${id}`
         }),
 
+        // создать обьявление без изображений
+        postTextAds: build.mutation({
+            query: ({ title, description, price }) => ({
+                url: `/adstext`,
+                method: 'POST',
+                body: JSON.stringify({
+                    title,
+                    description,
+                    price
+                }),
+                headers: { 'content-type': 'application/json' }
+            }),
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
+        // добавить изображения в объявление
+        postImgAds: build.mutation({
+            query: ({ data, id }) => {
+                const formData = new FormData()
+                if (data) {
+                    formData.append('file', data)
+                }
+                return {
+                    url: `/ads/${id}/image`,
+                    method: 'POST',
+                    body: formData
+                }
+            },
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
+        // удалить изображение
+        deleteFile: build.mutation({
+            query({ id, file_url }) {
+                return {
+                    url: `/ads/${id}/image`,
+                    params: `file_url=${file_url}`,
+                    method: 'DELETE'
+                }
+            },
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
+        // удалить объявление
+        deleteAds: build.mutation({
+            query(id) {
+                return {
+                    url: `/ads/${id}`,
+                    method: 'DELETE'
+                }
+            },
+            invalidatesTags: [{ type: 'ads', id: 'LIST' }]
+        }),
+
+        // изменить объявление
+        updateAds: build.mutation({
+            query: ({ id, ...patch }) => ({
+                url: `/ads/${id}`,
+                method: 'PATCH',
+                body: patch
+            }),
+        }),
+
         // получить комментарии по id
         getComments: build.query({
             query: (id) => `/ads/${id}/comments`,
@@ -72,5 +135,10 @@ export const {
     useGetFavAdsQuery,
     useGetAdsIdQuery,
     useGetCommentsQuery,
-    usePostCommentsMutation
+    usePostCommentsMutation,
+    usePostTextAdsMutation,
+    usePostImgAdsMutation,
+    useDeleteFileMutation,
+    useDeleteAdsMutation,
+    useUpdateAdsMutation
 } = adsApi

@@ -8,6 +8,7 @@
     letter-spacing: -0.05px;
 }
 
+.btnAdv,
 .btnLogout,
 .btnSave,
 .btnReview,
@@ -25,10 +26,14 @@
     font-size: 16px;
 }
 
-.disabled {
+.disabled,
+.disabled:hover {
     opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #b9b9b9;
 }
 
+.btnAdv:hover,
 .btnLogout:hover,
 .btnSave:hover,
 .btnReview:hover,
@@ -37,6 +42,7 @@
     background: #0080c1;
 }
 
+.btnAdv:active,
 .btnLogout:active,
 .btnSave:active,
 .btnReview:active,
@@ -70,6 +76,7 @@
     width: 181px;
 }
 
+.btnAdv,
 .btnReview {
     width: 181px;
 }

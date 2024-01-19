@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import s from './Reviews.module.css'
 import { useState } from 'react'
 import Button from '../../UI/Button/Button'
@@ -50,6 +49,7 @@ function Reviews({ setActive, comments, id }) {
                     <textarea
                         className={s.inputReviews}
                         placeholder="Введите отзыв"
+                        value={reviews}
                         type="text"
                         onChange={handleChange}
                     ></textarea>

@@ -9,6 +9,9 @@ import { useState } from 'react'
 import { useParams } from 'react-router'
 import { useGetAdsIdQuery, useGetCommentsQuery } from '../../services/adsApi'
 import getComments from '../../utils/getComments'
+import ProfileButton from '../../components/ProfileButton/ProfileButton'
+import { useAuthSelector } from '../../store/slice/auth'
+import ProductImg from '../../components/product/ProductImg/ProductImg'
 
 function Adv() {
     const [modalActive, setModalActive] = useState(false)
@@ -18,6 +21,10 @@ function Adv() {
     const { data: adsIdData } = useGetAdsIdQuery(id)
     const { data: commentsData } = useGetCommentsQuery(id)
 
+    const { email } = useAuthSelector()
+
+    const isProfileBtn = email === adsIdData?.user?.email
+
     return (
         <div className={s.wrapper}>
             <div className={s.container}>
@@ -26,29 +33,7 @@ function Adv() {
                     <Menu />
                     <div className={s.content}>
                         <div className={s.product}>
-                            <div className={s.pictures}>
-                                <div className={s.big}>
-                                    <img
-                                        className={s.bigImg}
-                                        src={`http://localhost:8090/${adsIdData?.images[0]?.url}`}
-                                        alt="img"
-                                    />
-                                </div>
-                                <div className={s.allImg}>
-                                    {adsIdData?.images?.map((el) => (
-                                        <div
-                                            className={s.small}
-                                            key={Math.random()}
-                                        >
-                                            <img
-                                                className={s.smallImg}
-                                                src={`http://localhost:8090/${el.url}`}
-                                                alt="img"
-                                            />
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            <ProductImg data={adsIdData} />
                             <div className={s.basicInfo}>
                                 <h2 className={s.title}>{adsIdData?.title}</h2>
                                 <p className={s.time}>
@@ -76,7 +61,12 @@ function Adv() {
                                 <h2 className={s.price}>
                                     {adsIdData?.price} ₽
                                 </h2>
-                                <ShowTelephone data={adsIdData} />
+                                {adsIdData?.user?.phone && !isProfileBtn && (
+                                    <ShowTelephone
+                                        phoneData={adsIdData?.user?.phone}
+                                    />
+                                )}
+                                {isProfileBtn && <ProfileButton data={adsIdData}/>}
                                 <Seller data={adsIdData} />
                             </div>
                         </div>

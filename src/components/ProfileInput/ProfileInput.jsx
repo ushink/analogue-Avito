@@ -14,7 +14,9 @@ function ProfileInput({ formInfo }) {
 
     const [update] = useUpdateUserMutation()
 
-    const [isButtonActiv, setIsButtonActiv] = useState(false)
+    const [isBtnSaveActive, setIsBtnSaveActive] = useState(true)
+    const [isBtnLogoutActive, setIsBtnLogoutActive] = useState(false)
+
     const [name, setName] = useState(formInfo?.name)
     const [surname, setSurname] = useState(formInfo?.surname)
     const [city, setCity] = useState(formInfo?.city)
@@ -22,7 +24,7 @@ function ProfileInput({ formInfo }) {
 
     const handleUpdateUser = async (event) => {
         event.preventDefault()
-        setIsButtonActiv(true)
+        setIsBtnSaveActive(true)
         try {
             await update({ name, surname, city, phone }).unwrap()
             location.reload(true)
@@ -34,7 +36,7 @@ function ProfileInput({ formInfo }) {
     const handelLogout = () => {
         dispatch(logout())
         toast.success('Успешно')
-        setIsButtonActiv(true)
+        setIsBtnLogoutActive(true)
         navigate('/login')
     }
     return (
@@ -46,9 +48,11 @@ function ProfileInput({ formInfo }) {
                     <input
                         className={s.input}
                         type="text"
+                        value={name}
                         placeholder={formInfo?.name}
                         onChange={(e) => {
                             setName(e.target.value)
+                            setIsBtnSaveActive(false)
                         }}
                     />
                 </div>
@@ -57,9 +61,11 @@ function ProfileInput({ formInfo }) {
                     <input
                         className={s.input}
                         type="text"
+                        value={surname}
                         placeholder={formInfo?.surname}
                         onChange={(e) => {
                             setSurname(e.target.value)
+                            setIsBtnSaveActive(false)
                         }}
                     />
                 </div>
@@ -68,9 +74,11 @@ function ProfileInput({ formInfo }) {
                     <input
                         className={s.input}
                         type="text"
+                        value={city}
                         placeholder={formInfo?.city}
                         onChange={(e) => {
                             setCity(e.target.value)
+                            setIsBtnSaveActive(false)
                         }}
                     />
                 </div>
@@ -83,12 +91,13 @@ function ProfileInput({ formInfo }) {
                         placeholder={formInfo?.phone}
                         onChange={(e) => {
                             setPhone(e.target.value)
+                            setIsBtnSaveActive(true)
                         }}
                     />
                 </div>
                 <Button
                     color={'btnSave'}
-                    disabled={isButtonActiv}
+                    disabled={isBtnSaveActive}
                     type={'submit'}
                 >
                     {'Сохранить'}
@@ -96,7 +105,7 @@ function ProfileInput({ formInfo }) {
                 <Button
                     color={'btnLogout'}
                     onClick={() => handelLogout()}
-                    disabled={isButtonActiv}
+                    disabled={isBtnLogoutActive}
                 >
                     {'Выйти из профиля'}
                 </Button>

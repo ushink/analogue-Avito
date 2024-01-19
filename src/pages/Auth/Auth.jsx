@@ -92,6 +92,7 @@ function Auth() {
                 })
             )
             navigate('/profile')
+            location.reload(true)
         }
         if (isRegisterSuccess) {
             toast.success('Регистрация пройдена успешно')
@@ -103,6 +104,7 @@ function Auth() {
                 })
             )
             navigate('/profile')
+            location.reload(true)
         }
     }, [isLoginSuccess, isRegisterSuccess])
 

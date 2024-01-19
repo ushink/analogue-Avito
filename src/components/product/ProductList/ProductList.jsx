@@ -16,20 +16,21 @@ function ProductList({ ads, isProfilePage }) {
                                 : navigate(`/adv/${el.id}`)
                         }
                     >
-                        {el.images.length !== 0 ? (
-                            <div className={s.productImg}>
+                        <div className={s.productImg}>
+                            {el.images.length !== 0 ? (
                                 <img
                                     className={s.adsImg}
                                     src={`http://localhost:8090/${el.images[0]?.url}`}
                                     alt="img"
                                 />
-                            </div>
-                        ) : (
-                            <>
-                                <div className={s.productImg}></div>
-                            </>
-                        )}
-
+                            ) : (
+                                <img
+                                    className={s.adsNoImg}
+                                    src="../img/noPhoto.png"
+                                    alt="no img"
+                                />
+                            )}
+                        </div>
                         <h3 className={s.productName}>{el.title}</h3>
                         <span className={s.productPrice}>
                             {el.price}&nbsp;₽
