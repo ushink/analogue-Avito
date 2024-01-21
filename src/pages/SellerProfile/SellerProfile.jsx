@@ -6,6 +6,7 @@ import ShowTelephone from '../../components/ShowTelephone/ShowTelephone'
 import { useGetUsersAllQuery } from '../../services/userApi'
 import { useParams } from 'react-router'
 import { useGetAdsAllQuery } from '../../services/adsApi'
+import MenuMob from '../../components/common/MenuMob/MenuMob'
 
 function SellerProfile() {
     const { data: adsAllData = [] } = useGetAdsAllQuery()
@@ -67,6 +68,7 @@ function SellerProfile() {
                         <ProductList ads={adsSeller} />
                     </div>
                 </main>
+                <MenuMob />
             </div>
         </div>
     )

@@ -10,7 +10,6 @@
     left: calc(50% - (366px / 2));
     top: calc(50% - (439px / 2));
     opacity: 1;
-    width: 366px;
     background-color: #ffffff;
     border-radius: 12px;
     display: flex;
@@ -33,4 +32,22 @@
 
 .error {
     background: rgb(241, 156, 156);
+}
+
+@media (max-width: 767px) {
+    .page {
+        background: #fff;
+    }
+    .form {
+        padding-top: 0;
+        padding-right: 20px;
+    }
+    .modalLogo {
+        width: 120px;
+        height: 18px;
+        margin-bottom: 30px;
+    }
+    .login {
+        margin-bottom: 14px;
+    }
 }

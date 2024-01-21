@@ -12,6 +12,7 @@ import getComments from '../../utils/getComments'
 import ProfileButton from '../../components/ProfileButton/ProfileButton'
 import { useAuthSelector } from '../../store/slice/auth'
 import ProductImg from '../../components/product/ProductImg/ProductImg'
+import MenuMob from '../../components/common/MenuMob/MenuMob'
 
 function Adv() {
     const [modalActive, setModalActive] = useState(false)
@@ -66,7 +67,9 @@ function Adv() {
                                         phoneData={adsIdData?.user?.phone}
                                     />
                                 )}
-                                {isProfileBtn && <ProfileButton data={adsIdData}/>}
+                                {isProfileBtn && (
+                                    <ProfileButton data={adsIdData} />
+                                )}
                                 <Seller data={adsIdData} />
                             </div>
                         </div>
@@ -76,6 +79,7 @@ function Adv() {
                         </div>
                     </div>
                 </main>
+                <MenuMob />
             </div>
             <Modal active={modalActive} setActive={setModalActive}>
                 <Reviews

@@ -92,3 +92,20 @@
 .btnLogout {
     width: 225px;
 }
+
+@media (max-width: 767px) {
+    .button {
+        padding: 10px 24px 14px;
+        height: 46px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .light {
+        margin-top: 10px;
+    }
+
+    .blue {
+        margin-top: 40px;
+    }
+}

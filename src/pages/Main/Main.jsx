@@ -4,6 +4,7 @@ import ProductList from '../../components/product/ProductList/ProductList'
 import Menu from '../../components/common/Menu/Menu'
 import { useGetAdsAllQuery } from '../../services/adsApi'
 import { useState } from 'react'
+import MenuMob from '../../components/common/MenuMob/MenuMob'
 
 function Main() {
     const { data: adsAllData = [] } = useGetAdsAllQuery()
@@ -28,12 +29,10 @@ function Main() {
                     <Menu ads={filterAds()} setSearch={setSearch} />
                     <div className={s.content}>
                         <h2 className={s.title}>Объявления</h2>
-                        <ProductList
-                            isProfilePage={false}
-                            ads={filterAds()}
-                        />
+                        <ProductList isProfilePage={false} ads={filterAds()} />
                     </div>
                 </main>
+                <MenuMob />
             </div>
         </div>
     )

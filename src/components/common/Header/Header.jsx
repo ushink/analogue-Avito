@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useLocation } from 'react-router'
 import s from './Header.module.css'
 import {
@@ -18,11 +19,14 @@ function Header() {
 
     const [modalActive, setModalActive] = useState(false)
 
-    if (pathname === LOGIN_ROUTE || pathname === REGISTRATION_ROUTE)
-        return <></>
+    // if (pathname === LOGIN_ROUTE || pathname === REGISTRATION_ROUTE)
+    //     return <></>
 
     return (
         <header className={s.header}>
+            <div className={s.logoMob}>
+                <img src="../img/logoMob.svg" alt="" />
+            </div>
             <nav className={s.nav}>
                 {!access ? (
                     <Link to={LOGIN_ROUTE}>
