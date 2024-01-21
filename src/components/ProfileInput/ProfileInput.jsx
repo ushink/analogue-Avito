@@ -91,7 +91,7 @@ function ProfileInput({ formInfo }) {
                         placeholder={formInfo?.phone}
                         onChange={(e) => {
                             setPhone(e.target.value)
-                            setIsBtnSaveActive(true)
+                            setIsBtnSaveActive(false)
                         }}
                     />
                 </div>
