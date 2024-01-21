@@ -56,9 +56,11 @@ function SellerProfile() {
                                         })}
                                     </p>
                                 </div>
-                                <ShowTelephone
-                                    phoneData={usersAllData?.[num]?.phone}
-                                />
+                                {usersAllData?.[num]?.phone && (
+                                    <ShowTelephone
+                                        phoneData={usersAllData?.[num]?.phone}
+                                    />
+                                )}
                             </div>
                         </div>
                         <h3 className={s.subtitle}>Товары продавца</h3>
