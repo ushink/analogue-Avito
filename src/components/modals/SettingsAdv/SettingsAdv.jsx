@@ -105,6 +105,7 @@ function SettingsAdv({ setActive, data }) {
                         <input
                             className={s.inputPrice}
                             type="number"
+                            min={0}
                             onChange={(e) => {
                                 setPrice(e.target.value)
                             }}

@@ -106,6 +106,7 @@ function NewAdv({ setActive }) {
                             className={s.inputPrice}
                             placeholder="0"
                             type="number"
+                            min={0}
                             value={price}
                             onChange={(e) => {
                                 setPrice(e.target.value)
