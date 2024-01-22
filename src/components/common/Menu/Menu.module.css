@@ -8,7 +8,6 @@
     align-items: center;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    padding: 11px 0;
     max-width: 1178px;
     margin: 0 auto;
     padding: 31px 10px 0px;
@@ -79,4 +78,38 @@
 .btn:active,
 .btnSearch:active {
     background-color: #0079b5;
+}
+
+@media (max-width: 767px) {
+    .menu {
+        max-width: 100%;
+        position: fixed;
+        z-index: 4;
+        margin: 0 auto;
+        padding: 11px 18px 0 59px;
+    }
+
+    .img {
+        display: none;
+    }
+
+    .search {
+        height: 32px;
+        border-radius: 30px;
+        background: #fff;
+        padding: 6px 17px;
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .search::placeholder {
+        color: #b3b3b3;
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .btn,
+    .btnSearch {
+        display: none;
+    }
 }

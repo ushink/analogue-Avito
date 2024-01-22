@@ -66,3 +66,47 @@
     font-weight: 400;
     line-height: 130%;
 }
+
+@media (max-width: 767px) {
+    .products {
+        gap: 10px;
+        margin-bottom: 85px;
+
+    }
+
+    .product {
+        border-radius: 6px;
+        box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .productImg {
+        width: 137px;
+        height: 132px;
+        margin-bottom: 10px;
+    }
+
+    .productName {
+        max-width: 115px;
+        font-size: 14px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .productPrice {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .productCity,
+    .productData {
+        max-width: 115px;
+        color: #5f5f5f;
+        font-size: 12px;
+        margin-bottom: 4px;
+        margin-left: 10px;
+    }
+    .productData {
+        max-width: 98px;
+        margin-bottom: 20px;
+    }
+}

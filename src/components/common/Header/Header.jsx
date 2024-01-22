@@ -1,11 +1,5 @@
-/* eslint-disable no-unused-vars */
-import { useLocation } from 'react-router'
 import s from './Header.module.css'
-import {
-    LOGIN_ROUTE,
-    REGISTRATION_ROUTE,
-    PROFILE_ROUTE
-} from '../../../utils/constants'
+import { LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/constants'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import Modal from '../../UI/Modal/Modal'
@@ -13,14 +7,9 @@ import NewAdv from '../../modals/NewAdv/NewAdv'
 import { useAuthSelector } from '../../../store/slice/auth'
 
 function Header() {
-    const { pathname } = useLocation()
-
     const { access } = useAuthSelector()
 
     const [modalActive, setModalActive] = useState(false)
-
-    // if (pathname === LOGIN_ROUTE || pathname === REGISTRATION_ROUTE)
-    //     return <></>
 
     return (
         <header className={s.header}>

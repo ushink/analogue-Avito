@@ -39,8 +39,7 @@
 }
 
 @media (min-width: 767px) {
-    .logoMob,
-    .nav {
+    .logoMob {
         display: none;
     }
 }
