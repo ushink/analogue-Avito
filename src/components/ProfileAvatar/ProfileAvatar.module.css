@@ -31,3 +31,13 @@
     line-height: 150%;
     background-color: transparent;
 }
+
+@media (max-width: 767px) {
+    .avatar {
+        margin-bottom: 30px;
+    }
+    .label {
+        width: 132px;
+        height: 132px;
+    }
+}

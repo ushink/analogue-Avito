@@ -47,3 +47,47 @@
     font-size: 16px;
     line-height: 24px;
 }
+
+@media (max-width: 767px) {
+    .box {
+        width: 100%;
+        column-gap: 30px;
+        flex-direction: column;
+    }
+
+    .form {
+        width: 100%;
+        row-gap: 18px;
+        flex-direction: column;
+        margin-right: 21px;
+    }
+
+    .item {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .label {
+        font-size: 14px;
+        font-weight: 400;
+        padding-bottom: 6px;
+    }
+
+    .inputTel,
+    .input {
+        width: 100%;
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: 400;
+        border-radius: 30px;
+        border: 1px solid #d9d9d9;
+        background: #fff;
+        padding: 9px 17px 10px;
+    }
+
+    .inputTel::placeholder,
+    .input::placeholder {
+        font-size: 14px;
+        line-height: 21px;
+    }
+}

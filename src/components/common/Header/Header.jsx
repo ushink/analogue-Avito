@@ -20,7 +20,7 @@ function Header() {
     return (
         <header className={s.header}>
             <div className={s.logoMob}>
-                <img src="../img/logoMob.svg" alt="" />
+                <img src="../../img/logoMob.svg" alt="" />
             </div>
             {pathname !== LOGIN_ROUTE && pathname !== REGISTRATION_ROUTE && (
                 <nav className={s.nav}>

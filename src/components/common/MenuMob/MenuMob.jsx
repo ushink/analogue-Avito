@@ -8,16 +8,16 @@ function MenuMob() {
         <footer className={s.footer}>
             <div className={s.buttons}>
                 <div className={s.homeMob} onClick={() => navigate(MAIN_ROUTE)}>
-                    <img src="../img/homeMob.svg" alt="homeImg" />
+                    <img src="../../img/homeMob.svg" alt="homeImg" />
                 </div>
                 <div className={s.addMob}>
-                    <img src="../img/addMob.svg" alt="addImg" />
+                    <img src="../../img/addMob.svg" alt="addImg" />
                 </div>
                 <div
                     className={s.profileMob}
                     onClick={() => navigate(PROFILE_ROUTE)}
                 >
-                    <img src="../img/profileMob.svg" alt="profileImg" />
+                    <img src="../../img/profileMob.svg" alt="profileImg" />
                 </div>
             </div>
         </footer>

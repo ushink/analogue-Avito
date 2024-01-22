@@ -47,3 +47,24 @@
     margin-bottom: 20px;
 }
 
+@media (max-width: 767px) {
+    .content {
+        padding: 85px 20px 0;
+    }
+
+    .title {
+        font-size: 24px;
+        line-height: 120%;
+        margin-bottom: 20px;
+    }
+
+    .profile {
+        margin-bottom: 40px;
+    }
+
+    .titleProfile {
+        font-size: 18px;
+        line-height: 18px;
+        margin-bottom: 30px;
+    }
+}
