@@ -71,7 +71,6 @@
     .products {
         gap: 10px;
         margin-bottom: 85px;
-
     }
 
     .product {
@@ -102,9 +101,13 @@
         max-width: 115px;
         color: #5f5f5f;
         font-size: 12px;
-        margin-bottom: 4px;
         margin-left: 10px;
+        margin-bottom: 4px;
     }
+    .productCity {
+        margin-top: 10px;
+    }
+
     .productData {
         max-width: 98px;
         margin-bottom: 20px;
