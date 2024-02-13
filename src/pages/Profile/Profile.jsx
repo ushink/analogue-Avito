@@ -6,6 +6,7 @@ import { useGetUsersAllQuery } from '../../services/userApi'
 import s from './Profile.module.css'
 import { useAuthSelector } from '../../store/slice/auth'
 import { useGetFavAdsQuery } from '../../services/adsApi'
+import MenuMob from '../../components/common/MenuMob/MenuMob'
 
 function Profile() {
     const { data: adsUserData } = useGetFavAdsQuery()
@@ -35,6 +36,7 @@ function Profile() {
                         <ProductList ads={adsUserData} isProfilePage={true} />
                     </div>
                 </main>
+                <MenuMob />
             </div>
         </div>
     )

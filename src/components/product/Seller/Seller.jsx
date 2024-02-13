@@ -16,7 +16,7 @@ function Seller({ data }) {
                     alt="img"
                 />
             ) : (
-                <img className={s.photo} src="../img/defaultAvatar.jpg" alt="img" />
+                <img className={s.photo} src="../../img/defaultAvatar.jpg" alt="img" />
             )}
 
             {!advPage ? (

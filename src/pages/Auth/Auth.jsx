@@ -13,6 +13,8 @@ import {
     useRegistrationMutation
 } from '../../services/authApi'
 import { toast } from 'react-toastify'
+import MenuMob from '../../components/common/MenuMob/MenuMob'
+import Header from '../../components/common/Header/Header'
 
 function Auth() {
     const { pathname } = useLocation()
@@ -100,11 +102,9 @@ function Auth() {
                 setAuth({
                     access: registerData.access_token,
                     refresh: registerData.refresh_token,
-                    email
                 })
             )
             navigate('/profile')
-            location.reload(true)
         }
     }, [isLoginSuccess, isRegisterSuccess])
 
@@ -122,6 +122,7 @@ function Auth() {
 
     return (
         <div className={s.page}>
+            <Header/>
             <form className={s.form} onSubmit={(e) => e.preventDefault()}>
                 <div className={s.modalLogo}>
                     <img src="/img/logoAuth.svg" alt="logo" />
@@ -172,6 +173,7 @@ function Auth() {
                     </Button>
                 )}
             </form>
+            <MenuMob />
         </div>
     )
 }

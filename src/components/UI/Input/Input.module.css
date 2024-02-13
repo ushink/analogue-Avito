@@ -8,3 +8,20 @@
 .input::placeholder {
     color: #e1e1e1;
 }
+
+@media (max-width: 767px) {
+    .input {
+        width: 278px;
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: 400;
+        border-radius: 30px;
+        border: 1px solid #d9d9d9;
+        background: #fff;
+        padding: 10px 17px 10px;
+    }
+
+    .input::placeholder {
+        color: #b3b3b3;
+    }
+}

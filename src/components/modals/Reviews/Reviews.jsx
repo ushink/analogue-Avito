@@ -23,8 +23,10 @@ function Reviews({ setActive, comments, id }) {
     // оставить комментарий
     const handleAddPost = async () => {
         try {
-            await comment({ id, text: reviews }).unwrap()
-            setReviews(initialValue)
+            if (reviews) {
+                await comment({ id, text: reviews }).unwrap()
+                setReviews(initialValue)
+            }
         } catch {
             if (isCommentError) {
                 toast.error(commentError.data.detail)
