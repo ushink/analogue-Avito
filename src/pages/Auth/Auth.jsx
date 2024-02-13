@@ -102,11 +102,9 @@ function Auth() {
                 setAuth({
                     access: registerData.access_token,
                     refresh: registerData.refresh_token,
-                    email
                 })
             )
             navigate('/profile')
-            location.reload(true)
         }
     }, [isLoginSuccess, isRegisterSuccess])
 
